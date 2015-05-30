@@ -9,7 +9,11 @@ import com.swap.TextureManager.TextureSeries;
 
 public class Player {
 
+	public static final double deathDamage = 25;
+	public static final double maxDamagePerSecond = 10;
+	
 	private float x, y;
+	private double damage;
 	
 	public Player(){
 		x = Display.getWidth()/2;//TODO something other than this
@@ -38,4 +42,18 @@ public class Player {
 		return y;
 	}
 	
+	public void setDamage(double d)
+	{
+		damage = d;
+	}
+	
+	public void incDamage(double d)
+	{
+		damage += d;
+	}
+	
+	public double getDamage(double d)
+	{
+		return damage;
+	}
 }

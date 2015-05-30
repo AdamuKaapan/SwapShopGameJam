@@ -33,7 +33,7 @@ public class SpriteSheetPart
 	
 	public int getAlpha(int x, int y)
 	{
-		return reds[(y * 16) + x];
+		return alphas[(y * 16) + x];
 	}
 
 	public int getHue(int x, int y)
