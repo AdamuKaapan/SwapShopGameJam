@@ -19,11 +19,12 @@ public class Main extends HvlTemplateInteg2DBasic{
 		super(60, 1280, 720, "Swap Shop MiniLD#59", 20, HvlDisplayMode.DEFAULT);
 	}
 
-	public static HvlFontPainter2D fontPainter;
+	private static HvlFontPainter2D fontPainter;
 	
 	@Override
 	public void initialize() {
 		TextureManager.initialize();
+		MenuManager.initialize(this);
 		
 		fontPainter = new HvlFontPainter2D(TextureManager.getTexture(TextureSeries.MISC, 1), HvlFontLayout.DEFAULT, 2048, 2048, 112, 144, 18);
 	}
@@ -31,7 +32,7 @@ public class Main extends HvlTemplateInteg2DBasic{
 	@Override
 	public void update(long delta) {
 		HvlPainter2D.hvlDrawQuad(0, 0, 1280, 720, TextureManager.getTexture(TextureSeries.MISC, 0), new Color(0f, 1f, 1f));
-		fontPainter.hvlDrawWord("test yay it works!!!...", 100, 100, 0.25f, new Color(1f, 1f, 1f));
+		MenuManager.draw(delta);
 	}
 
 }
