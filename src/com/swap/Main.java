@@ -23,8 +23,7 @@ public class Main extends HvlTemplateInteg2DBasic {
 		TextureManager.initialize();
 		MenuManager.initialize(this);
 		Game.initialize();
-		
-		System.out.println(SpriteSheetUtil.getSpriteSheetPart(1, 1).getDifficulty());
+		KeybindManager.initialize();
 	}
 
 	@Override

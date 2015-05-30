@@ -104,6 +104,7 @@ public class MenuManager {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuGame);
+				Game.start();
 			}
 			@Override
 			public void draw(long delta){
@@ -116,7 +117,6 @@ public class MenuManager {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuMain);
-				Game.start();
 			}
 			@Override
 			public void draw(long delta){
