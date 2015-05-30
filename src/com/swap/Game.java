@@ -8,7 +8,7 @@ import com.swap.TextureManager.TextureSeries;
 
 public class Game {	
 	private static int hue = 0;
-	private static long timeBetweenSwitch = 250;
+	private static long timeBetweenSwitch = 50;
 	private static long timer = 0;
 	
 	public static void initialize(){
@@ -25,7 +25,8 @@ public class Game {
 		for(int x = 0; x < 16; x++){
 			for(int y = 0; y < 16; y++){
 				HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), SpriteSheetUtil.getSpriteSheetPart(0, 0).getColor(x, y));
-				if(SpriteSheetUtil.getSpriteSheetPart(0, 0).getDamage(hue, x, y) > 0) HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.PARTICLE, 0), new Color());
+				Color color = ColorUtils.invertColor(Game.getBackground());
+				if(SpriteSheetUtil.getSpriteSheetPart(0, 0).getDamage(hue, x, y) > 0) HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.PARTICLE, 0), new Color(color.r, color.g, color.b, (float)SpriteSheetUtil.getSpriteSheetPart(0, 0).getDamage(hue, x, y)));
 			}
 		}
 		

@@ -40,11 +40,11 @@ public class SpriteSheetUtil {
 		
 		URL website;
 		try {
-//			website = new URL("http://swapshop.pixelsyntax.com/api/randomImage");
-//			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-//			FileOutputStream fos = new FileOutputStream("res/" + downloadPath);
-//			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-//			fos.close();
+			website = new URL("http://swapshop.pixelsyntax.com/api/randomImage");
+			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+			FileOutputStream fos = new FileOutputStream("res/" + downloadPath);
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+			fos.close();
 
 			currentSpriteSheet = TextureLoader.getTexture("PNG", new FileInputStream("res/" + downloadPath));
 			BufferedImage img = ImageIO.read(new File("res/" + downloadPath));

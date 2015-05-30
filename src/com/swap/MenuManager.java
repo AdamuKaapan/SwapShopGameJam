@@ -2,6 +2,7 @@ package com.swap;
 
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.opengl.Texture;
 
 import com.osreboot.ridhvl.HvlFontUtil.HvlFontLayout;
 import com.osreboot.ridhvl.menu.HvlButton;
@@ -32,7 +33,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				super.draw(delta);
-				fontPainter.hvlDrawWord("main menu", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "main menu", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 			}
 		};
 		buttonMainPlay = new HvlButton(main.getWidth()/8, main.getHeight()/8, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
@@ -43,7 +44,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
-				fontPainter.hvlDrawWord("play", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "play", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuMain.addButton(buttonMainPlay);
@@ -186,6 +187,14 @@ public class MenuManager {
 
 	public static void draw(long delta){
 		HvlMenu.updateMenus(delta);
+		total += delta;
+	}
+	
+	static long total = 0;
+	
+	public static void drawCrazyWord(long delta, String word, float x, float y, float scale, Color color){
+		fontPainter.hvlDrawWord(word, x, y, scale, color);
+		fontPainter.hvlDrawWord(word, x, y, (((float)Math.sin((double)total/1000)/4 + 0.5f)), ColorUtils.invertColor(color));
 	}
 	
 	public static String getDifficultyName(double difficultyArg){
