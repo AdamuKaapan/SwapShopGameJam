@@ -1,5 +1,6 @@
 package com.swap;
 
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 
 import com.osreboot.ridhvl.HvlFontUtil.HvlFontLayout;
@@ -11,7 +12,7 @@ import com.swap.TextureManager.TextureSeries;
 
 public class MenuManager {
 
-	public static HvlMenu menuMain, menuCredits, menuPreview;
+	public static HvlMenu menuMain, menuCredits, menuPreview, menuGame;
 	public static HvlButton buttonMainCredits, buttonMainPlay, 
 	buttonCreditsMain, 
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack;
@@ -84,12 +85,13 @@ public class MenuManager {
 			public void draw(long delta){
 				super.draw(delta);
 				fontPainter.hvlDrawWord("map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/4, 128, 128, SpriteSheetUtil.getSpriteSheet());
 			}
 		};
 		buttonPreviewRefresh = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
-				//TODO refresh
+				SpriteSheetUtil.downloadSpritesheet();
 			}
 			@Override
 			public void draw(long delta){
@@ -101,7 +103,7 @@ public class MenuManager {
 		buttonPreviewStart = new HvlButton(main.getWidth()/8, main.getHeight()/8*6, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
-				//TODO start
+				HvlMenu.setCurrent(menuGame);
 			}
 			@Override
 			public void draw(long delta){
@@ -114,6 +116,7 @@ public class MenuManager {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuMain);
+				Game.start();
 			}
 			@Override
 			public void draw(long delta){
@@ -122,7 +125,19 @@ public class MenuManager {
 			}
 		};
 		menuPreview.addButton(buttonPreviewBack);
-
+		
+		
+		
+		menuGame = new HvlMenu(){
+			@Override
+			public void draw(long delta){
+				super.draw(delta);
+				Game.update(delta);
+			}
+		};
+		
+		
+		
 		HvlMenu.setCurrent(menuMain);
 	}
 
