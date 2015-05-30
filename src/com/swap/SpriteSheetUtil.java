@@ -3,8 +3,11 @@ package com.swap;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 import javax.imageio.ImageIO;
 
@@ -37,11 +40,11 @@ public class SpriteSheetUtil {
 		
 		URL website;
 		try {
-//			website = new URL("http://swapshop.pixelsyntax.com/api/randomImage");
-//			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-//			FileOutputStream fos = new FileOutputStream("res/" + downloadPath);
-//			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-//			fos.close();
+			website = new URL("http://swapshop.pixelsyntax.com/api/randomImage");
+			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+			FileOutputStream fos = new FileOutputStream("res/" + downloadPath);
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+			fos.close();
 
 			currentSpriteSheet = TextureLoader.getTexture("PNG", new FileInputStream("res/" + downloadPath));
 			BufferedImage img = ImageIO.read(new File("res/" + downloadPath));
