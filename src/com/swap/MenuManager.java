@@ -37,7 +37,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, 1f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
 				fontPainter.hvlDrawWord("play", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -49,7 +49,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, 1f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
 				fontPainter.hvlDrawWord("credits", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -71,7 +71,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, 1f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
 				fontPainter.hvlDrawWord("back", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -93,7 +93,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, 1f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
 				fontPainter.hvlDrawWord("refresh", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -105,7 +105,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, 1f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
 				fontPainter.hvlDrawWord("start", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -117,7 +117,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, 1f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
 				fontPainter.hvlDrawWord("back", getX(), getY() + (getYLength()/6), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
