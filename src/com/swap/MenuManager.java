@@ -135,6 +135,7 @@ public class MenuManager {
 			public void draw(long delta){
 				super.draw(delta);
 				Game.update(delta);
+				if(KeybindManager.getActionValue(ActionType.PAUSE) == 1) HvlMenu.setCurrent(menuPaused);
 			}
 		};
 		
@@ -145,7 +146,6 @@ public class MenuManager {
 			public void draw(long delta){
 				super.draw(delta);
 				fontPainter.hvlDrawWord("map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
-				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/4, 128, 128, SpriteSheetUtil.getSpriteSheet());
 			}
 		};
 		buttonPausedQuit = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
