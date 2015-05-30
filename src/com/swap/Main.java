@@ -1,10 +1,6 @@
 package com.swap;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
 
 import com.osreboot.ridhvl.HvlDisplay.HvlDisplayMode;
 import com.osreboot.ridhvl.painter.painter2d.HvlPainter2D;
@@ -22,11 +18,13 @@ public class Main extends HvlTemplateInteg2DBasic {
 	}
 	
 	@Override
-	public void initialize() {
+	public void initialize() {		
 		SpriteSheetUtil.downloadSpritesheet();
 		TextureManager.initialize();
 		MenuManager.initialize(this);
 		Game.initialize();
+		
+		System.out.println(SpriteSheetUtil.getSpriteSheetPart(1, 1).getDifficulty());
 	}
 
 	@Override
