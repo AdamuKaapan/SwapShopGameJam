@@ -18,6 +18,7 @@ public class KeybindManager {
 	
 	public static float getActionValue(ActionType actionArg){
 		switch(actionArg){
+		case PAUSE: return Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) ? 1f : 0f;
 		case MOVEVERTICAL: return (Keyboard.isKeyDown(Keyboard.KEY_W) ? 1f : 0f) + (Keyboard.isKeyDown(Keyboard.KEY_S) ? -1f : 0f);
 		case MOVEHORIZONTAL: return (Keyboard.isKeyDown(Keyboard.KEY_D) ? 1f : 0f) + (Keyboard.isKeyDown(Keyboard.KEY_A) ? -1f : 0f);
 		default: return 0;
