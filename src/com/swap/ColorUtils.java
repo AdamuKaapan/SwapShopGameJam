@@ -2,10 +2,10 @@ package com.swap;
 
 import java.awt.Color;
 
-public class ColorSweeper {
+public class ColorUtils {
 	
-	public void getHue(double ratio) {
-		
+	public double getHue(double ratio) {
+		return ratio * 360;
 	}
 	
 	public static double getHueFromRGB(int r, int g, int b)
