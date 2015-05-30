@@ -3,8 +3,6 @@ package com.swap;
 import org.newdawn.slick.Color;
 
 import com.osreboot.ridhvl.HvlDisplay.HvlDisplayMode;
-import com.osreboot.ridhvl.HvlFontUtil.HvlFontLayout;
-import com.osreboot.ridhvl.painter.painter2d.HvlFontPainter2D;
 import com.osreboot.ridhvl.painter.painter2d.HvlPainter2D;
 import com.osreboot.ridhvl.template.HvlTemplateInteg2DBasic;
 import com.swap.TextureManager.TextureSeries;
@@ -18,15 +16,11 @@ public class Main extends HvlTemplateInteg2DBasic{
 	public Main(){
 		super(60, 1280, 720, "Swap Shop MiniLD#59", 20, HvlDisplayMode.DEFAULT);
 	}
-
-	private static HvlFontPainter2D fontPainter;
 	
 	@Override
 	public void initialize() {
 		TextureManager.initialize();
 		MenuManager.initialize(this);
-		
-		fontPainter = new HvlFontPainter2D(TextureManager.getTexture(TextureSeries.MISC, 1), HvlFontLayout.DEFAULT, 2048, 2048, 112, 144, 18);
 	}
 
 	@Override
