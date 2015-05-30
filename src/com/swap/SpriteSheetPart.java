@@ -1,12 +1,14 @@
 package com.swap;
 
-import java.awt.Color;
 
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 public class SpriteSheetPart
 {
 	public static final int sensitivity = 5;
+	public static final int damageRange = 10;
 	
 	public Texture texture;
 	public int[] reds = new int[256];
@@ -36,7 +38,12 @@ public class SpriteSheetPart
 
 	public int getHue(int x, int y)
 	{
-		return (int)(Color.RGBtoHSB(getRed(x, y), getGreen(x, y), getBlue(x, y), null)[0] * 360);
+		return (int)(java.awt.Color.RGBtoHSB(getRed(x, y), getGreen(x, y), getBlue(x, y), null)[0] * 360);
+	}
+	
+	public Color getColor(int x, int y)
+	{
+		return new Color(getRed(x, y), getGreen(x, y), getBlue(x, y), getAlpha(x, y));
 	}
 	
 	public double getDifficulty()
@@ -80,5 +87,15 @@ public class SpriteSheetPart
 		}
 		
 		return (double) maxSize / 256.0;
+	}
+
+	public double getDamage(int hue, int x, int y)
+	{
+		int tile = getHue(x, y);
+		int diff = Math.abs(hue - tile);
+		
+		int temp = Math.max(0, damageRange - diff);
+		
+		return (double) temp / damageRange;
 	}
 }
