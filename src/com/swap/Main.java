@@ -1,31 +1,28 @@
 package com.swap;
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
+import com.osreboot.ridhvl.HvlDisplay.HvlDisplayMode;
+import com.osreboot.ridhvl.template.HvlTemplateInteg2DBasic;
 
-public class Main {
+
+public class Main extends HvlTemplateInteg2DBasic{
 
 	public static void main(String[] args) {
-		try {
-			Display.setDisplayMode(new DisplayMode(800, 600));
-			Display.create();
-			
-			while (!Display.isCloseRequested())
-			{
-				Display.update();
-				Display.sync(60);
-			}
-			
-			Display.destroy();
-			System.exit(0);
-		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new Main();
 	}
 	
 	public Main(){
+		super(60, 1280, 720, "Swap Shop MiniLD#59", 20, HvlDisplayMode.DEFAULT);
+	}
+
+	@Override
+	public void initialize() {
+		
+		
+	}
+
+	@Override
+	public void update(long arg0) {
+		
 		
 	}
 
