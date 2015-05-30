@@ -27,10 +27,12 @@ public class Main extends HvlTemplateInteg2DBasic {
 		TextureManager.initialize();
 		MenuManager.initialize(this);
 		Game.initialize();
+		KeybindManager.initialize();
 	}
 
 	@Override
 	public void update(long delta) {
+		KeybindManager.update();
 		HvlPainter2D.hvlDrawQuad(0, 0, 1280, 720, TextureManager.getTexture(TextureSeries.MISC, 0), new Color(0f, 1f, 1f));
 		MenuManager.draw(delta);
 	}
