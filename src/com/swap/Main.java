@@ -26,6 +26,7 @@ public class Main extends HvlTemplateInteg2DBasic {
 		SpriteSheetUtil.downloadSpritesheet();
 		TextureManager.initialize();
 		MenuManager.initialize(this);
+		Game.initialize();
 	}
 
 	@Override
