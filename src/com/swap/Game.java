@@ -18,9 +18,9 @@ public class Game {
 	}
 	
 	public static void update(long delta){
-		for(int x = 0; x < 8; x++){
-			for(int y = 0; y < 8; y++){
-				//HvlPainter2D.hvlDrawQuad(384 + (x*64), 104 + (y*64), 64, 64, TextureManager.getTexture(TextureSeries.MISC, 0), SpriteSheetUtil.getSpriteSheetPart(x, y).get);
+		for(int x = 0; x < 16; x++){
+			for(int y = 0; y < 16; y++){
+				HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), SpriteSheetUtil.getSpriteSheetPart(0, 0).getColor(x, y));
 			}
 		}
 		player.update(delta);
