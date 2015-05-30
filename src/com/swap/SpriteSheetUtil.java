@@ -6,7 +6,7 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-public class SpritesheetDownloader {
+public class SpriteSheetUtil {
 	public static final String downloadPath = "CurrentSpritesheet.png";
 	
 	public static boolean downloadSpritesheet()
