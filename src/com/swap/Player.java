@@ -24,7 +24,7 @@ public class Player {
 	}
 	
 	public void update(long delta){
-		HvlPainter2D.hvlDrawQuad(x - 16, y - 16, 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), new Color(0f, 0f, 1f));
+		HvlPainter2D.hvlDrawQuad(x - 16, y - 16, 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(Game.getBackground()));
 		xs += (KeybindManager.getActionValue(ActionType.MOVEHORIZONTAL)*delta*speed);
 		ys += (-KeybindManager.getActionValue(ActionType.MOVEVERTICAL)*delta*speed);
 		xs *= (x + xs > 896 - (playerSize/2) ? -bounce : 1) * (x + xs < 384 + (playerSize/2) ? -bounce : 1);

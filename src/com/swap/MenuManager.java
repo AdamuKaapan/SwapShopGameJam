@@ -138,7 +138,7 @@ public class MenuManager {
 		menuGame = new HvlMenu(){
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(0, 0, 1280, 720, TextureManager.getTexture(TextureSeries.MISC, 0), new Color(0f, 1f, 1f));
+				HvlPainter2D.hvlDrawQuad(0, 0, 1280, 720, TextureManager.getTexture(TextureSeries.MISC, 0), Game.getBackground());
 				super.draw(delta);
 				Game.update(delta);
 				if(KeybindManager.getActionValue(ActionType.PAUSE) == 1) HvlMenu.setCurrent(menuPaused);
