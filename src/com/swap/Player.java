@@ -12,7 +12,7 @@ public class Player {
 	public static final double deathDamage = 25;
 	public static final double maxDamagePerSecond = 10;
 	
-	private float x, y;
+	private float x, y, xs, ys;
 	private double damage;
 	
 	public Player(){
@@ -55,5 +55,21 @@ public class Player {
 	public double getDamage(double d)
 	{
 		return damage;
+	}
+	
+	public void setXSpeed(float xsArg){
+		xs = xsArg;
+	}
+	
+	public void setYSpeed(float ysArg){
+		ys = ysArg;
+	}
+	
+	public float getXSpeed(){
+		return xs;
+	}
+	
+	public float getYSpeed(){
+		return ys;
 	}
 }
