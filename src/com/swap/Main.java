@@ -28,7 +28,6 @@ public class Main extends HvlTemplateInteg2DBasic {
 
 	@Override
 	public void update(long delta) {
-		HvlPainter2D.hvlDrawQuad(0, 0, 1280, 720, TextureManager.getTexture(TextureSeries.MISC, 0), new Color(0f, 1f, 1f));
 		MenuManager.draw(delta);
 	}
 

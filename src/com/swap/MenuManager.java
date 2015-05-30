@@ -19,6 +19,8 @@ public class MenuManager {
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
 	buttonPausedQuit, buttonPausedResume;
 
+	private static int currentDifficulty;
+	
 	private static HvlFontPainter2D fontPainter;
 
 	public static void initialize(Main main){
@@ -88,12 +90,15 @@ public class MenuManager {
 				super.draw(delta);
 				fontPainter.hvlDrawWord("map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/4, 128, 128, SpriteSheetUtil.getSpriteSheet());
+				fontPainter.hvlDrawWord(getDifficultyName(currentDifficulty), Display.getWidth()/8, Display.getHeight()/2, 0.5f, new Color((float)currentDifficulty, 1f, 1f));
 			}
 		};
 		buttonPreviewRefresh = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				SpriteSheetUtil.downloadSpritesheet();
+				for(int i = 0; i < 64; i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getDifficulty();
+				currentDifficulty /= 64;
 			}
 			@Override
 			public void draw(long delta){
@@ -133,6 +138,7 @@ public class MenuManager {
 		menuGame = new HvlMenu(){
 			@Override
 			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(0, 0, 1280, 720, TextureManager.getTexture(TextureSeries.MISC, 0), new Color(0f, 1f, 1f));
 				super.draw(delta);
 				Game.update(delta);
 				if(KeybindManager.getActionValue(ActionType.PAUSE) == 1) HvlMenu.setCurrent(menuPaused);
@@ -180,6 +186,19 @@ public class MenuManager {
 
 	public static void draw(long delta){
 		HvlMenu.updateMenus(delta);
+	}
+	
+	public static String getDifficultyName(double difficultyArg){
+		if(difficultyArg < 0.1f) return "super easy";
+		else if(difficultyArg < 0.2f) return "very easy";
+		else if(difficultyArg < 0.3f) return "easy";
+		else if(difficultyArg < 0.4f) return "mild";
+		else if(difficultyArg < 0.5f) return "medium";
+		else if(difficultyArg < 0.6f) return "slightly hard";
+		else if(difficultyArg < 0.7f) return "hard";
+		else if(difficultyArg < 0.8f) return "very hard";
+		else if(difficultyArg < 0.9f) return "super hard";
+		else return "insane";
 	}
 
 }
