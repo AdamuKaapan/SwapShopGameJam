@@ -19,24 +19,25 @@ public class SpriteSheetUtil {
 	public static final String downloadPath = "CurrentSpritesheet.png";
 
 	private static Texture currentSpriteSheet = null;
-	private static Texture[] spriteSheetParts = new Texture[64];
+	private static SpriteSheetPart[] spriteSheetParts = new SpriteSheetPart[64];
 	
 	public static Texture getSpriteSheet()
 	{
 		return currentSpriteSheet;
 	}
 	
-	public static Texture getSpriteSheetPart(int i)
+	public static SpriteSheetPart getSpriteSheetPart(int i)
 	{
 		return spriteSheetParts[i];
 	}
 	
-	public static Texture getSpriteSheetPart(int x, int y)
+	public static SpriteSheetPart getSpriteSheetPart(int x, int y)
 	{
 		return spriteSheetParts[(y * 8) + x];
 	}
 	
 	public static boolean downloadSpritesheet() {
+		
 		URL website;
 		try {
 			website = new URL("http://swapshop.pixelsyntax.com/api/randomImage");
@@ -58,15 +59,31 @@ public class SpriteSheetUtil {
 		}
 	}
 
-	private static Texture splitSpritesheet(BufferedImage img, int tile) {
+	private static SpriteSheetPart splitSpritesheet(BufferedImage img, int tile) {
 		int tileX = tile % 8;
 		int tileY = tile / 8;
 
 		try {
+			SpriteSheetPart part = new SpriteSheetPart();
+			
 			BufferedImage subimg = img.getSubimage(tileX * 16, tileY * 16, 16,
 					16);
-			return BufferedImageUtil.getTexture("SpriteSheetPart" + tile,
+			part.texture = BufferedImageUtil.getTexture("SpriteSheetPart" + tile,
 					subimg);
+			
+			for (int x = 0; x < 16; x++)
+			{
+				for (int y = 0; y < 16; y++)
+				{
+					int rgb = subimg.getRGB(x, y);
+					part.alphas[(y * 16) + x] = (rgb >>> 24) & 0xFF;
+					part.reds[(y * 16) + x] = (rgb >>> 16) & 0xFF;
+					part.greens[(y * 16) + x] = (rgb >>> 8) & 0xFF;
+					part.blues[(y * 16) + x] = (rgb >>> 0) & 0xFF;
+				}
+			}
+			
+			return part;
 		} catch (IOException e) {
 			return null;
 		}
