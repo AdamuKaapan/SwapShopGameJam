@@ -61,7 +61,7 @@ public class Player {
 		damage += d;
 	}
 	
-	public double getDamage(double d)
+	public double getDamage()
 	{
 		return damage;
 	}
