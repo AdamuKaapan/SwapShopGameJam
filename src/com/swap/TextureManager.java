@@ -14,6 +14,7 @@ public class TextureManager {
 	
 	public static void initialize(){
 		miscTextureLoader.loadResource("White");
+		miscTextureLoader.loadResource("Font");
 	}
 	
 	public static Texture getTexture(TextureSeries seriesArg, int indexArg){
