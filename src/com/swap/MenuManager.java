@@ -8,14 +8,16 @@ import com.osreboot.ridhvl.menu.HvlButton;
 import com.osreboot.ridhvl.menu.HvlMenu;
 import com.osreboot.ridhvl.painter.painter2d.HvlFontPainter2D;
 import com.osreboot.ridhvl.painter.painter2d.HvlPainter2D;
+import com.swap.KeybindManager.ActionType;
 import com.swap.TextureManager.TextureSeries;
 
 public class MenuManager {
 
-	public static HvlMenu menuMain, menuCredits, menuPreview, menuGame;
+	public static HvlMenu menuMain, menuCredits, menuPreview, menuGame, menuPaused;
 	public static HvlButton buttonMainCredits, buttonMainPlay, 
 	buttonCreditsMain, 
-	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack;
+	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
+	buttonPausedQuit, buttonPausedResume;
 
 	private static HvlFontPainter2D fontPainter;
 
@@ -135,6 +137,41 @@ public class MenuManager {
 				Game.update(delta);
 			}
 		};
+		
+		
+		
+		menuPaused = new HvlMenu(){
+			@Override
+			public void draw(long delta){
+				super.draw(delta);
+				fontPainter.hvlDrawWord("map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/4, 128, 128, SpriteSheetUtil.getSpriteSheet());
+			}
+		};
+		buttonPausedQuit = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+			@Override
+			public void onTriggered(){
+				HvlMenu.setCurrent(menuMain);
+			}
+			@Override
+			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				fontPainter.hvlDrawWord("quit", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+			}
+		};
+		menuPaused.addButton(buttonPausedQuit);
+		buttonPausedResume = new HvlButton(main.getWidth()/8, main.getHeight()/8*6, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+			@Override
+			public void onTriggered(){
+				HvlMenu.setCurrent(menuGame);
+			}
+			@Override
+			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				fontPainter.hvlDrawWord("resume", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+			}
+		};
+		menuPaused.addButton(buttonPausedResume);
 		
 		
 		
