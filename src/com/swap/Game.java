@@ -42,7 +42,6 @@ public class Game {
 		
 		int tileX = Math.round((player.getX() - 400) / 32);
 		int tileY = Math.round((player.getY() - 120) / 32);
-		
 		player.incDamage((double) SpriteSheetUtil.getSpriteSheetPart(0, 0).getDamage(hue, tileX, tileY) * Player.maxDamagePerSecond * ((double) delta / 1000));
 				
 		HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
