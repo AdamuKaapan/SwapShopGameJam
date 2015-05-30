@@ -10,6 +10,7 @@ import com.swap.TextureManager.TextureSeries;
 public class Player {
 
 	public static final float friction = 0.9999f, speed = 0.013f, bounce = 0.8f;
+	public static final float playerSize = 32;
 	
 	private float x, y, xs, ys;
 	
@@ -19,13 +20,13 @@ public class Player {
 	}
 	
 	public void update(long delta){
-		HvlPainter2D.hvlDrawQuad(x - 16, y - 16, 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), new Color(0f, 0f, 1f));
+		HvlPainter2D.hvlDrawQuad(x - (playerSize/2), y - (playerSize/2), playerSize, playerSize, TextureManager.getTexture(TextureSeries.MISC, 0), new Color(0f, 0f, 1f));
 		xs += (KeybindManager.getActionValue(ActionType.MOVEHORIZONTAL)*delta*speed);
 		ys += (-KeybindManager.getActionValue(ActionType.MOVEVERTICAL)*delta*speed);
-		xs *= (x + xs > 896 ? -bounce : 1) * (x + xs < 384 ? -bounce : 1);
-		ys *= (y + ys > 616 ? -bounce : 1) * (y + ys < 104 ? -bounce : 1);
-		x = Math.max(384, Math.min(896, x + xs));
-		y = Math.max(104, Math.min(616, y + ys));
+		xs *= (x + xs > 896 - (playerSize/2) ? -bounce : 1) * (x + xs < 384 + (playerSize/2) ? -bounce : 1);
+		ys *= (y + ys > 616 - (playerSize/2) ? -bounce : 1) * (y + ys < 104 + (playerSize/2)? -bounce : 1);
+		x = Math.max(384 + (playerSize/2), Math.min(896 - (playerSize/2), x + xs));
+		y = Math.max(104 + (playerSize/2), Math.min(616 - (playerSize/2), y + ys));
 		xs *= friction*((float)delta/18);
 		ys *= friction*((float)delta/18);
 	}
