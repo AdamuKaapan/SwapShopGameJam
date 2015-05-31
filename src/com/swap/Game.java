@@ -48,10 +48,15 @@ public class Game {
 		timer = 0;
 		mode = Mode.prepreview;
 		fillLevels();
-		currentLevel = levelSequence.length - 1;
+		currentLevel = 0;
+		
+		if (levelSequence.length == 0)
+		{
+			HvlMenu.setCurrent(MenuManager.menuPreview);
+		}
 	}
 	
-	public static void update(long delta){
+	public static void update(long delta){		
 		if (mode != Mode.uberwin)
 		{
 			for(int x = 0; x < 16; x++){
@@ -241,7 +246,7 @@ public class Game {
 			
 			chosen[lev] = true;
 			
-			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() >= 0.99) continue;
+			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() >= 0.95) continue;
 			
 			list.add(lev);
 		}
