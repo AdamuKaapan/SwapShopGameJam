@@ -177,6 +177,17 @@ public class MenuManager {
 				drawCrazyWord(delta, "then avoid the traps!", Display.getWidth()/8, Display.getHeight()/32*15, 0.25f, new Color(1f, 1f, 1f), 0.15f);
 				drawCrazyWord(delta, "keep an eye on the pointer", Display.getWidth()/16*6, Display.getHeight()/8*5, 0.25f, new Color(1f, 1f, 1f), 0.15f);
 				drawCrazyWord(delta, "for the current color!", Display.getWidth()/32*15, Display.getHeight()/4*3, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				
+				HvlPainter2D.hvlDrawQuad(Display.getWidth()/4, Display.getHeight()/16*9, Display.getWidth()/16, Display.getHeight()/4, TextureManager.getTexture(TextureSeries.GAME, 0));
+				HvlPainter2D.hvlDrawQuad(Display.getWidth()/64*17, (Display.getHeight()/16*11) + (float)(Math.sin((double)total/1000)*Display.getHeight()/8) - 16, 32, 32, TextureManager.getTexture(TextureSeries.GAME, 1));
+				
+				for(int x = 0; x < 4; x++){
+					for(int y = 0; y < 4; y++){
+						HvlPainter2D.hvlDrawQuad((Display.getWidth()/4*3) + (x*32), (Display.getHeight()/16*5) + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), new Color((float)x/8, (float)y/8, 0.5f));
+						HvlPainter2D.hvlDrawQuad((Display.getWidth()/4*3) + (x*32), (Display.getHeight()/16*5) + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.PARTICLE, 0), new Color(1f - (float)x/8, 1f - (float)y/8, 0.5f, (float)(Math.sin((double)total/((x + 1)*(y + 1)*100)))));
+					}
+				}
+				
 			}
 		};
 		buttonTutorialMain = new HvlButton(main.getWidth()/8, main.getHeight()/8*7, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
