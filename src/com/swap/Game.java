@@ -62,6 +62,8 @@ public class Game {
 		
 		HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
 		
+		HvlPainter2D.hvlDrawQuad(Display.getWidth()/4*3, Display.getHeight()/8, Display.getWidth()/16, Display.getHeight()/4*3, TextureManager.getTexture(TextureSeries.GAME, 0));
+		
 		player.update(delta);
 		
 		if (player.getDamage() >= Player.deathDamage)
@@ -77,5 +79,9 @@ public class Game {
 		int g = (rgb >>> 8) & 0xFF;
 		int b = (rgb >>> 0) & 0xFF;
 		return new Color(r, g, b, 255);
+	}
+	
+	public static boolean isPreviewing(){
+		return isPreviewing;
 	}
 }
