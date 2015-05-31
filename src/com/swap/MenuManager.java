@@ -15,7 +15,7 @@ import com.swap.TextureManager.TextureSeries;
 public class MenuManager {
 
 	public static HvlMenu menuMain, menuCredits, menuPreview, menuGame, menuPaused;
-	public static HvlButton buttonMainCredits, buttonMainPlay, 
+	public static HvlButton buttonMainCredits, buttonMainPlay, buttonMainQuit, 
 	buttonCreditsMain, 
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
 	buttonPausedQuit, buttonPausedResume;
@@ -43,7 +43,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
 				drawCrazyWord(delta, "play", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -55,11 +55,24 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
 				drawCrazyWord(delta, "credits", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuMain.addButton(buttonMainCredits);
+		buttonMainQuit = new HvlButton(main.getWidth()/8, main.getHeight()/8*7, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+			@Override
+			public void onTriggered(){
+				Display.destroy();
+				System.exit(0);
+			}
+			@Override
+			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
+				drawCrazyWord(delta, "quit", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+			}
+		};
+		menuMain.addButton(buttonMainQuit);
 
 
 
@@ -77,7 +90,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
 				drawCrazyWord(delta, "back", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -91,7 +104,7 @@ public class MenuManager {
 				super.draw(delta);
 				drawCrazyWord(delta, "map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/4, 128, 128, SpriteSheetUtil.getSpriteSheet());
-				drawCrazyWord(delta, getDifficultyName(currentDifficulty), Display.getWidth()/8, Display.getHeight()/2, 0.5f, new Color((float)currentDifficulty, 1f, 1f));
+				drawCrazyWord(delta, getDifficultyName(currentDifficulty), Display.getWidth()/8, Display.getHeight()/2, 0.5f, new Color(1f, 1f, 1f));
 			}
 		};
 		buttonPreviewRefresh = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
@@ -103,7 +116,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
 				drawCrazyWord(delta, "refresh", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -116,7 +129,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
 				drawCrazyWord(delta, "start", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -128,7 +141,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
 				drawCrazyWord(delta, "back", getX(), getY() + (getYLength()/6), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -162,7 +175,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
 				drawCrazyWord(delta, "quit", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -174,7 +187,7 @@ public class MenuManager {
 			}
 			@Override
 			public void draw(long delta){
-				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
 				drawCrazyWord(delta, "resume", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
@@ -186,11 +199,28 @@ public class MenuManager {
 	}
 
 	public static void draw(long delta){
+		if(HvlMenu.getCurrent() != menuGame){
+			updateColors();
+			drawFillerBackground();
+		}
 		HvlMenu.updateMenus(delta);
 		total += delta;
 	}
 	
-	static long total = 0;
+	private static long total = 0;
+	private static Color backgroundColor;
+	
+	public static void updateColors(){
+		int rgb = java.awt.Color.HSBtoRGB((float) (total/10)%360 / 360, 1, 1);
+		int r = (rgb >>> 16) & 0xFF;
+		int g = (rgb >>> 8) & 0xFF;
+		int b = (rgb >>> 0) & 0xFF;
+		backgroundColor = new Color(r, g, b, 255);
+	}
+	
+	public static void drawFillerBackground(){
+		HvlPainter2D.hvlDrawQuad(0, 0, Display.getWidth(), Display.getHeight(), TextureManager.getTexture(TextureSeries.MISC, 0), backgroundColor);
+	}
 	
 	public static void drawCrazyWord(long delta, String word, float x, float y, float scale, Color color){
 		float modifier = (float)(Math.sin((double)total/250)*7);
