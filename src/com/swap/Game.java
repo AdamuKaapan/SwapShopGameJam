@@ -16,7 +16,7 @@ public class Game {
 		prepreview, preview, pause, play, death, win, uberwin
 	}
 	private static int hue = 1;
-	private static long timeBetweenSwitch = 50, previewTime = 5, pauseTime = 5000;
+	private static long playTime = 35, previewTime = 5, pauseTime = 5000;
 	private static long timer = 0;
 	private static Mode mode;
 	
@@ -96,7 +96,7 @@ public class Game {
 			{
 				timer += delta;
 				
-				if (timer >= timeBetweenSwitch)
+				if (timer >= playTime)
 				{
 					hue++;
 					timer = 0;
@@ -168,7 +168,7 @@ public class Game {
 	
 	public static void fillLevels()
 	{
-		Random rand = new Random();		
+		Random rand = new Random();
 		
 		boolean[] chosen = new boolean[64];
 
