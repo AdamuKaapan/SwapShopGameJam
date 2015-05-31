@@ -16,13 +16,15 @@ public class Game {
 		prepreview, preview, pause, play, death, win, uberwin
 	}
 	private static int hue = 1;
-	private static long playTime = 35, previewTime = 5, pauseTime = 5000;
+	private static long playTime = 35, previewTime = 10, pauseTime = 5000;
 	private static long timer = 0;
 	private static Mode mode;
 	
 	private static String[] winTexts = new String[] { "nice!", "duuuude!", "epic!", "bruh!", "whoa!", "woah!", "whuuuut?", "how even?" };
+	private static String[] loseTexts = new String[] { "siiiiigh...", "oops", "derp", "try again", "denied", "nooooo..." ,"aww..." };
 	
 	private static int currentWinText;
+	private static int currentLoseText;
 	
 	private static int currentLevel = 0;
 	private static int[] levelSequence;
@@ -63,6 +65,8 @@ public class Game {
 				hue = 1;
 				timer = 0;
 			}
+			
+			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
 			
 			break;
 		case preview:
@@ -117,6 +121,8 @@ public class Game {
 				if (player.getDamage() >= Player.deathDamage)
 				{
 					mode = Mode.death;
+					Random rand = new Random();
+					currentLoseText = rand.nextInt(loseTexts.length);
 				}
 			}
 			else
@@ -127,9 +133,14 @@ public class Game {
 			}
 			break;
 		case death:
+			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+			
+			String lt = loseTexts[currentLoseText];
+			MenuManager.drawCrazyWord(delta, lt, (Display.getWidth() / 2) - (112 * lt.length() * 0.75f * 0.5f), (Display.getHeight() / 2) - (144 * 0.75f * 0.5f), 0.75f, Color.white);
+			
 			timer += delta;
 			
-			if (timer >= 2500)
+			if (timer >= 5000)
 			{
 				mode = Mode.prepreview;
 				timer = 0;
@@ -139,8 +150,10 @@ public class Game {
 			}
 			break;
 		case win:
-			String text = winTexts[currentWinText];
-			MenuManager.drawCrazyWord(delta, text, (Display.getWidth() / 2) - (112 * text.length() * 0.75f * 0.5f), (Display.getHeight() / 2) - (144 * 0.75f * 0.5f), 0.75f, ColorUtils.invertColor(getBackground()));
+			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+			
+			String wt = winTexts[currentWinText];
+			MenuManager.drawCrazyWord(delta, wt, (Display.getWidth() / 2) - (112 * wt.length() * 0.75f * 0.5f), (Display.getHeight() / 2) - (144 * 0.75f * 0.5f), 0.75f, Color.white);
 			
 			timer += delta;
 			
