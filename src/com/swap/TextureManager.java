@@ -19,6 +19,7 @@ public class TextureManager {
 		miscTextureLoader.loadResource("Font");
 		
 		particleTextureLoader.loadResource("Damage");
+		particleTextureLoader.loadResource("Indicator");
 		
 		gameTextureLoader.loadResource("Spectrum");
 		gameTextureLoader.loadResource("Pointer");
