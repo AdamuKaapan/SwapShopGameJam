@@ -49,7 +49,6 @@ public class Game {
 		mode = Mode.prepreview;
 		fillLevels();
 		currentLevel = 0;
-		currentLevel = levelSequence.length - 1;
 		
 		if (levelSequence.length == 0)
 		{
