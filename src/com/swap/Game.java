@@ -9,7 +9,7 @@ import com.swap.TextureManager.TextureSeries;
 public class Game {
 	private static enum Mode
 	{
-		prepreview, preview, pause, play
+		prepreview, preview, pause, play, death, win
 	}
 	private static int hue = 1;
 	private static long timeBetweenSwitch = 75, previewTime = 5, pauseTime = 5000;
@@ -100,25 +100,28 @@ public class Game {
 				HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
 				
 				HvlPainter2D.hvlDrawQuad(Display.getWidth()/64*49, Display.getHeight()/16*15 - (((float)hue/360)*(Display.getHeight()/4*3)) - 16, 32, 32, TextureManager.getTexture(TextureSeries.GAME, 1));
+				
+				if (player.getDamage() >= Player.deathDamage)
+				{
+					mode = Mode.death;
+				}
 			}
 			else
 			{
-				System.out.println("YOU WONDED!");
+				mode = Mode.win;
 			}
+			break;
+		case death:
+			System.exit(0);
+			break;
+		case win:
+			System.out.println("YOU WONDED!");
+			break;
 		}
-		
-		
 		
 		HvlPainter2D.hvlDrawQuad(Display.getWidth()/4*3, Display.getHeight()/16*3, Display.getWidth()/16, Display.getHeight()/4*3, TextureManager.getTexture(TextureSeries.GAME, 0));
 		
-		//if(mode == Mode.play) HvlPainter2D.hvlDrawQuad(Display.getWidth()/64*49, Display.getHeight()/16*15 - (((float)hue/360)*(Display.getHeight()/4*3)) - 16, 32, 32, TextureManager.getTexture(TextureSeries.GAME, 1));
-		
 		player.update(delta);
-		
-		if (player.getDamage() >= Player.deathDamage)
-		{
-			System.exit(0);
-		}
 	}
 	
 	public static Color getBackground()
