@@ -194,7 +194,8 @@ public class MenuManager {
 	
 	public static void drawCrazyWord(long delta, String word, float x, float y, float scale, Color color){
 		fontPainter.hvlDrawWord(word, x, y, scale, color);
-		fontPainter.hvlDrawWord(word, x, y, (((float)Math.sin((double)total/1000)/4 + 0.5f)), ColorUtils.invertColor(color));
+		float modifier = (float)(Math.sin((double)total/1000)/4 + 0.5f);
+		fontPainter.hvlDrawWord(word, x * modifier, y * modifier, modifier, ColorUtils.invertColor(color));
 	}
 	
 	public static String getDifficultyName(double difficultyArg){
