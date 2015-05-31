@@ -20,8 +20,8 @@ public class TextureManager {
 		
 		particleTextureLoader.loadResource("Damage");
 		
-		particleTextureLoader.loadResource("Spectrum");
-		particleTextureLoader.loadResource("Pointer");
+		gameTextureLoader.loadResource("Spectrum");
+		gameTextureLoader.loadResource("Pointer");
 	}
 	
 	public static Texture getTexture(TextureSeries seriesArg, int indexArg){
