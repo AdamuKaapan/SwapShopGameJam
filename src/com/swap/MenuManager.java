@@ -399,8 +399,8 @@ public class MenuManager {
 	public static void newSpriteSheet(){
 		while(!SpriteSheetUtil.downloadSpritesheet() || SpriteSheetUtil.getViableLevels() == 0){}
 		currentDifficulty = 0;
-		for(int i = 0; i < 64; i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getDifficulty();
-		currentDifficulty /= 64;
+		for(int i = 0; i < SpriteSheetUtil.getViableLevels(); i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getDifficulty();
+		currentDifficulty /= SpriteSheetUtil.getViableLevels();
 	}
 	
 	public static String getDifficultyName(double difficultyArg){
