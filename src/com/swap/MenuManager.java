@@ -18,7 +18,8 @@ public class MenuManager {
 	public static HvlButton buttonMainCredits, buttonMainPlay, buttonMainQuit, buttonMainOptions, 
 	buttonCreditsMain, 
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
-	buttonPausedQuit, buttonPausedResume;
+	buttonPausedQuit, buttonPausedResume,
+	buttonOptionsMain, buttonOptionsMute;
 
 	private static double currentDifficulty;
 	
@@ -117,7 +118,7 @@ public class MenuManager {
 				drawCrazyWord(delta, "options", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 			}
 		};
-		buttonCreditsMain = new HvlButton(main.getWidth()/8, main.getHeight()/8, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonOptionsMain = new HvlButton(main.getWidth()/8, main.getHeight()/4, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuMain);
@@ -128,7 +129,19 @@ public class MenuManager {
 				drawCrazyWord(delta, "back", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
-		menuOptions.addButton(buttonCreditsMain);
+		menuOptions.addButton(buttonOptionsMain);
+		buttonOptionsMute = new HvlButton(main.getWidth()/8, main.getHeight()/8, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+			@Override
+			public void onTriggered(){
+				SoundManager.setMuted(!SoundManager.getMuted());
+			}
+			@Override
+			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
+				drawCrazyWord(delta, SoundManager.getMuted() ? "unmute audio" : "mute audio", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+			}
+		};
+		menuOptions.addButton(buttonOptionsMute);
 		
 		
 		
@@ -199,7 +212,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				super.draw(delta);
-				drawCrazyWord(delta, "map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "paused", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 			}
 		};
 		buttonPausedQuit = new HvlButton(main.getWidth()/8, main.getHeight()/8*6, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
