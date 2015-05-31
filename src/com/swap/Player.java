@@ -13,7 +13,7 @@ public class Player {
 	public static final float playerSize = 32;
 	
 	public static final double deathDamage = 7.5;
-	public static final double maxDamagePerSecond = 10;
+	public static final double maxDamagePerSecond = 20;
 	
 	private float x, y, xs, ys;
 	private double damage;
