@@ -197,6 +197,13 @@ public class Game {
 		HvlPainter2D.hvlDrawQuad(Display.getWidth()/4*3, Display.getHeight()/16*3, Display.getWidth()/16, Display.getHeight()/4*3, TextureManager.getTexture(TextureSeries.GAME, 0));
 		
 		player.update(delta);
+
+
+		String text = (currentLevel + 1) + " of " + levelSequence.length;
+		
+		HvlPainter2D.hvlRotate(128, 128, -90);
+		MenuManager.drawCrazyWord(delta, text, -228, 32, 0.25f, Color.white);
+		HvlPainter2D.hvlResetRotation();
 	}
 	
 	public static Color getBackground()
@@ -226,7 +233,7 @@ public class Game {
 			
 			chosen[lev] = true;
 			
-			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() > 0.95) continue;
+			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() >= 0.99) continue;
 			
 			list.add(lev);
 		}

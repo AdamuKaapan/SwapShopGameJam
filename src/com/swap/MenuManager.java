@@ -108,10 +108,15 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				super.draw(delta);
-				drawCrazyWord(delta, "credits", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "credits", 100, 10, 0.5f, Color.white);
+				drawCrazyWord(delta, "game idea   calvin weaver", 100, 125, 0.25f, Color.white, 0.15f);
+				drawCrazyWord(delta, "programming   calvin weaver", 100, 200, 0.25f, Color.white, 0.15f);
+				drawCrazyWord(delta, "and adam krpan", 575, 250, 0.25f, Color.white, 0.3f);
+				drawCrazyWord(delta, "art   harris nakajima", 100, 325, 0.25f, Color.white, 0.15f);
+				drawCrazyWord(delta, "music   harris nakajima", 100, 400, 0.25f, Color.white, 0.15f);
 			}
 		};
-		buttonCreditsMain = new HvlButton(main.getWidth()/8, main.getHeight()/8, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonCreditsMain = new HvlButton(main.getWidth()/8, 500, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuMain);

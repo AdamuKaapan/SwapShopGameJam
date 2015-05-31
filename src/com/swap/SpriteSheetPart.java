@@ -86,7 +86,11 @@ public class SpriteSheetPart
 			maxSize = Math.max(maxSize, uf.getSize(i));
 		}
 		
-		return (double) maxSize / 256.0;
+		double toReturn = (double) maxSize / 256.0;
+		
+		if (toReturn < 0.98) toReturn = 1.0 - toReturn;
+		
+		return toReturn;
 	}
 
 	public double getDamage(int hue, int x, int y)
