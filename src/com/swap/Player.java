@@ -12,7 +12,7 @@ public class Player {
 	public static final float friction = 0.9999f, speed = 0.013f, bounce = 0.8f;
 	public static final float playerSize = 32;
 	
-	public static final double deathDamage = 25;
+	public static final double deathDamage = 7.5;
 	public static final double maxDamagePerSecond = 10;
 	
 	private float x, y, xs, ys;

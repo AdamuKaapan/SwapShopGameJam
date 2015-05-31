@@ -19,6 +19,8 @@ public class Game {
 	
 	public static void start(){
 		player = new Player();
+		hue = 0;
+		timer = 0;
 	}
 	
 	public static void update(long delta){
