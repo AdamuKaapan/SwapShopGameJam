@@ -21,7 +21,8 @@ public class MenuManager {
 	buttonOptionsMain, buttonOptionsMute, 
 	buttonTutorialMain, 
 	buttonWinMain;
-
+	
+	public static int levels; // can't draw in game, so I need some way to access this.
 	private static double currentDifficulty;
 	
 	private static HvlFontPainter2D fontPainter;
@@ -322,15 +323,18 @@ public class MenuManager {
 		
 		// WIN SCREEN
 		menuWin = new HvlMenu()
-		{
+		{			
 			@Override
 			public void draw(long delta)
 			{
 				super.draw(delta);
 				String text = "you win!"; //112 144
-				//drawCrazyWord(delta, text, (Display.getWidth() / 2) - (text.length() * 112 * 0.5f), (Display.getHeight() / 2) - (text.length() * 144 * 0.5f), 1.0f, Color.white);
 				drawCrazyWord(delta, text, Display.getWidth()/32*5, Display.getHeight()/4, 1.0f, Color.white);
 				HvlPainter2D.hvlDrawQuad(Display.getWidth()/16*7, Display.getHeight()/2, 128, 128, SpriteSheetUtil.getSpriteSheet());
+				String diffText = getDifficultyName(currentDifficulty) + " difficulty";
+				drawCrazyWord(delta, diffText, (Display.getWidth() / 2) - (diffText.length() * 0.5f * 112 * 0.25f), 64, 0.25f, Color.white);
+				String levelsText = levels + " levels";
+				drawCrazyWord(delta, levelsText, (Display.getWidth() / 2) - (levelsText.length() * 0.5f * 112 * 0.25f), 128, 0.25f, Color.white);
 			}
 		};
 		buttonWinMain = new HvlButton(main.getWidth()/8, main.getHeight()/8*6, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
