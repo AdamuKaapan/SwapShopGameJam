@@ -14,7 +14,7 @@ import com.swap.TextureManager.TextureSeries;
 
 public class MenuManager {
 
-	public static HvlMenu menuMain, menuCredits, menuPreview, menuGame, menuPaused, menuOptions, menuTutorial;
+	public static HvlMenu menuMain, menuCredits, menuPreview, menuGame, menuPaused, menuOptions, menuTutorial, menuWin;
 	public static HvlButton buttonMainCredits, buttonMainPlay, buttonMainQuit, buttonMainOptions, buttonMainTutorial, 
 	buttonCreditsMain, 
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
@@ -291,7 +291,18 @@ public class MenuManager {
 		};
 		menuPaused.addButton(buttonPausedResume);
 		
-		
+		// WIN SCREEN
+		menuWin = new HvlMenu()
+		{
+			@Override
+			public void draw(long delta)
+			{
+				super.draw(delta);
+				String text = "you win!"; //112 144
+				//drawCrazyWord(delta, text, (Display.getWidth() / 2) - (text.length() * 112 * 0.5f), (Display.getHeight() / 2) - (text.length() * 144 * 0.5f), 1.0f, Color.white);
+				drawCrazyWord(delta, text, 200, 300, 1.0f, Color.white);
+			}
+		};
 		
 		HvlMenu.setCurrent(menuMain);
 	}
