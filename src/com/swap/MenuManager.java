@@ -314,10 +314,11 @@ public class MenuManager {
 				super.draw(delta);
 				String text = "you win!"; //112 144
 				//drawCrazyWord(delta, text, (Display.getWidth() / 2) - (text.length() * 112 * 0.5f), (Display.getHeight() / 2) - (text.length() * 144 * 0.5f), 1.0f, Color.white);
-				drawCrazyWord(delta, text, 200, 300, 1.0f, Color.white);
+				drawCrazyWord(delta, text, Display.getWidth()/32*5, Display.getHeight()/4, 1.0f, Color.white);
+				HvlPainter2D.hvlDrawQuad(Display.getWidth()/16*7, Display.getHeight()/2, 128, 128, SpriteSheetUtil.getSpriteSheet());
 			}
 		};
-		buttonWinMain = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonWinMain = new HvlButton(main.getWidth()/8, main.getHeight()/8*6, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuMain);
