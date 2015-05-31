@@ -20,7 +20,7 @@ public class MenuManager {
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
 	buttonPausedQuit, buttonPausedResume;
 
-	private static int currentDifficulty;
+	private static double currentDifficulty;
 	
 	private static HvlFontPainter2D fontPainter;
 
