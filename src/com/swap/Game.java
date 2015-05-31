@@ -63,6 +63,11 @@ public class Game {
 		HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
 		
 		player.update(delta);
+		
+		if (player.getDamage() >= Player.deathDamage)
+		{
+			System.exit(0);
+		}
 	}
 	
 	public static Color getBackground()
