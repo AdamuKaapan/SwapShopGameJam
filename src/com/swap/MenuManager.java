@@ -115,7 +115,7 @@ public class MenuManager {
 				drawCrazyWord(delta, "art   harris nakajima", 100, 325, 0.25f, Color.white, 0.15f);
 				drawCrazyWord(delta, "and calvin weaver", 575, 375, 0.25f, Color.white, 0.15f);
 				drawCrazyWord(delta, "music   harris nakajima", 100, 450, 0.25f, Color.white, 0.15f);
-				drawCrazyWord(delta, "made in one day for mini ld 59 (swap shop)", 100, 525, 0.25f, Color.white, 0.15f);
+				drawCrazyWord(delta, "made in one day for mini ld 59", 192, 525, 0.25f, Color.white, 0.15f);
 			}
 		};
 		buttonCreditsMain = new HvlButton(main.getWidth()/8, 600, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
