@@ -91,7 +91,7 @@ public class SpriteSheetUtil {
 		}
 	}
 	
-	public int getViableLevels()
+	public static int getViableLevels()
 	{
 		int count = 0;
 		for (int i = 0; i < 64; i++)

@@ -216,8 +216,9 @@ public class MenuManager {
 				super.draw(delta);
 				drawCrazyWord(delta, "map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 				if(SpriteSheetUtil.getSpriteSheet() == null) newSpriteSheet();
-				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/4, 128, 128, SpriteSheetUtil.getSpriteSheet());
+				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/5, 128, 128, SpriteSheetUtil.getSpriteSheet());
 				drawCrazyWord(delta, getDifficultyName(currentDifficulty), Display.getWidth()/8, Display.getHeight()/2, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, SpriteSheetUtil.getViableLevels() + " levels", Display.getWidth()/8, Display.getHeight()/64*27, 0.3f, new Color(1f, 1f, 1f), 0.8f);
 			}
 		};
 		buttonPreviewRefresh = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
@@ -396,7 +397,7 @@ public class MenuManager {
 	}
 	
 	public static void newSpriteSheet(){
-		while(!SpriteSheetUtil.downloadSpritesheet()){}
+		while(!SpriteSheetUtil.downloadSpritesheet() || SpriteSheetUtil.getViableLevels() == 0){}
 		currentDifficulty = 0;
 		for(int i = 0; i < 64; i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getDifficulty();
 		currentDifficulty /= 64;
