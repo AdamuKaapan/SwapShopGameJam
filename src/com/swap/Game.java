@@ -62,6 +62,8 @@ public class Game {
 					hue++;
 					timer = 0;
 				}
+				
+				HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
 			}
 			else
 			{
@@ -94,6 +96,10 @@ public class Game {
 				int tileX = Math.round((player.getX() - 400) / 32);
 				int tileY = Math.round((player.getY() - 120) / 32);
 				player.incDamage((double) SpriteSheetUtil.getSpriteSheetPart(0, 0).getDamage(hue, tileX, tileY) * Player.maxDamagePerSecond * ((double) delta / 1000));
+			
+				HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+				
+				HvlPainter2D.hvlDrawQuad(Display.getWidth()/64*49, Display.getHeight()/16*15 - (((float)hue/360)*(Display.getHeight()/4*3)) - 16, 32, 32, TextureManager.getTexture(TextureSeries.GAME, 1));
 			}
 			else
 			{
@@ -101,11 +107,11 @@ public class Game {
 			}
 		}
 		
-		HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+		
 		
 		HvlPainter2D.hvlDrawQuad(Display.getWidth()/4*3, Display.getHeight()/16*3, Display.getWidth()/16, Display.getHeight()/4*3, TextureManager.getTexture(TextureSeries.GAME, 0));
 		
-		if(!isPreviewing) HvlPainter2D.hvlDrawQuad(Display.getWidth()/64*49, Display.getHeight()/16*15 - (((float)hue/360)*(Display.getHeight()/4*3)) - 16, 32, 32, TextureManager.getTexture(TextureSeries.GAME, 1));
+		//if(mode == Mode.play) HvlPainter2D.hvlDrawQuad(Display.getWidth()/64*49, Display.getHeight()/16*15 - (((float)hue/360)*(Display.getHeight()/4*3)) - 16, 32, 32, TextureManager.getTexture(TextureSeries.GAME, 1));
 		
 		player.update(delta);
 		
@@ -122,9 +128,5 @@ public class Game {
 		int g = (rgb >>> 8) & 0xFF;
 		int b = (rgb >>> 0) & 0xFF;
 		return new Color(r, g, b, 255);
-	}
-	
-	public static boolean isPreviewing(){
-		return isPreviewing;
 	}
 }
