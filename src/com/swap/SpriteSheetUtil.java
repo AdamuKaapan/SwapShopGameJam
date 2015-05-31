@@ -18,6 +18,8 @@ import org.newdawn.slick.util.BufferedImageUtil;
 public class SpriteSheetUtil {
 	public static final String downloadPath = "CurrentSpritesheet.png";
 
+	public static final double threshold = 0.9;
+	
 	private static Texture currentSpriteSheet = null;
 	private static SpriteSheetPart[] spriteSheetParts = new SpriteSheetPart[64];
 	
@@ -87,5 +89,17 @@ public class SpriteSheetUtil {
 		} catch (IOException e) {
 			return null;
 		}
+	}
+	
+	public int getViableLevels()
+	{
+		int count = 0;
+		for (int i = 0; i < 64; i++)
+		{
+			if (getSpriteSheetPart(i).getDifficulty() < threshold)
+				count++;
+		}
+		
+		return count;
 	}
 }
