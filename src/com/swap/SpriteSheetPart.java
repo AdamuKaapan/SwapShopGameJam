@@ -8,7 +8,7 @@ import org.newdawn.slick.opengl.Texture;
 public class SpriteSheetPart
 {
 	public static final int sensitivity = 2;
-	public static final int damageRange = 10;
+	public static final int damageRange = 6;
 	
 	public Texture texture;
 	public int[] reds = new int[256];
@@ -46,7 +46,7 @@ public class SpriteSheetPart
 		return new Color(getRed(x, y), getGreen(x, y), getBlue(x, y), getAlpha(x, y));
 	}
 	
-	public double getDifficulty()
+	public double getClumpDifficulty()
 	{
 		UnionFind uf = new UnionFind(256);
 		
@@ -93,6 +93,23 @@ public class SpriteSheetPart
 		return toReturn;
 	}
 
+	public double getRangeDifficulty()
+	{
+		int min = 360, max = 0;
+		
+		for (int x = 0; x < 16; x++)
+		{
+			for (int y = 0; y < 16; y++)
+			{
+				int hue = getHue(x, y);
+				min = Math.min(min, hue);
+				max = Math.max(max, hue);
+			}
+		}
+
+		return (double) Math.abs(max - min) / 360.0;
+	}
+	
 	public double getDamage(int hue, int x, int y)
 	{
 		int tile = getHue(x, y);

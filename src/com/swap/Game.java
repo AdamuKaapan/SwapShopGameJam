@@ -9,6 +9,7 @@ import org.newdawn.slick.Color;
 
 import com.osreboot.ridhvl.menu.HvlMenu;
 import com.osreboot.ridhvl.painter.painter2d.HvlPainter2D;
+import com.swap.SoundManager.SoundSeries;
 import com.swap.TextureManager.TextureSeries;
 
 public class Game {
@@ -21,10 +22,10 @@ public class Game {
 	private static long timer = 0;
 	private static Mode mode;
 	
-	private static String[] winTexts = new String[] { "nice!", "duuuude!", "epic!", "bruh!", "whoa!", "woah!", "whuuuut?", "how even?", "fantastic!" };
-	private static String[] loseTexts = new String[] { "siiiiigh...", "oops", "derp", "try again", "denied", "nooooo..." ,"aww..." };
-	private static String[] preTexts = new String[] { "pay attention...", "watch carefully...", "look at this...", "watch and learn" };
-	private static String[] readyTexts = new String[] { "ready?", "get ready...", "prepare yourself!", "runners to your marks" };
+	public static final String[] winTexts = new String[] { "nice!", "duuuude!", "epic!", "bruh!", "whoa!", "woah!", "whuuuut?", "how even?", "fantastic!" };
+	public static final String[] loseTexts = new String[] { "siiiiigh...", "oops", "derp", "try again", "denied", "nooooo..." ,"aww..." };
+	public static final String[] preTexts = new String[] { "pay attention...", "watch carefully...", "look at this...", "watch and learn" };
+	public static final String[] readyTexts = new String[] { "ready?", "get ready...", "prepare yourself!", "runners to your marks" };
 	
 	private static int currentWinText;
 	private static int currentLoseText;
@@ -152,6 +153,7 @@ public class Game {
 					mode = Mode.death;
 					Random rand = new Random();
 					currentLoseText = rand.nextInt(loseTexts.length);
+					SoundManager.getSound(SoundSeries.LOSE, SoundManager.loseSoundMap.get(loseTexts[currentLoseText])).playAsSoundEffect(1.0f, 1.0f, false);
 				}
 			}
 			else
@@ -159,6 +161,7 @@ public class Game {
 				Random rand = new Random();
 				mode = Mode.win;
 				currentWinText = rand.nextInt(winTexts.length);
+				SoundManager.getSound(SoundSeries.WIN, SoundManager.winSoundMap.get(winTexts[currentWinText])).playAsSoundEffect(1.0f, 1.0f, false);
 			}
 			break;
 		case death:
@@ -246,7 +249,7 @@ public class Game {
 			
 			chosen[lev] = true;
 			
-			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() >= SpriteSheetUtil.threshold) continue;
+			if (SpriteSheetUtil.getSpriteSheetPart(lev).getClumpDifficulty() >= SpriteSheetUtil.threshold) continue;
 			
 			list.add(lev);
 		}

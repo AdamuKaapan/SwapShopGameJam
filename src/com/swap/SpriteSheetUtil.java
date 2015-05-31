@@ -96,7 +96,7 @@ public class SpriteSheetUtil {
 		int count = 0;
 		for (int i = 0; i < 64; i++)
 		{
-			if (getSpriteSheetPart(i).getDifficulty() < threshold)
+			if (getSpriteSheetPart(i).getClumpDifficulty() < threshold)
 				count++;
 		}
 		
