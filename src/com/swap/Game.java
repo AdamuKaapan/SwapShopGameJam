@@ -1,5 +1,7 @@
 package com.swap;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import org.lwjgl.opengl.Display;
@@ -11,15 +13,15 @@ import com.swap.TextureManager.TextureSeries;
 public class Game {
 	private static enum Mode
 	{
-		prepreview, preview, pause, play, death, win
+		prepreview, preview, pause, play, death, win, uberwin
 	}
 	private static int hue = 1;
-	private static long timeBetweenSwitch = 50, previewTime = 5, pauseTime = 5000;
+	private static long playTime = 35, previewTime = 5, pauseTime = 5000;
 	private static long timer = 0;
 	private static Mode mode;
 	
 	private static int currentLevel = 0;
-	private static int[] levelSequence = new int[64];
+	private static int[] levelSequence;
 	
 	public static void initialize(){
 		
@@ -94,7 +96,7 @@ public class Game {
 			{
 				timer += delta;
 				
-				if (timer >= timeBetweenSwitch)
+				if (timer >= playTime)
 				{
 					hue++;
 					timer = 0;
@@ -138,9 +140,14 @@ public class Game {
 				mode = Mode.prepreview;
 				timer = 0;
 				hue = 1;
-				currentLevel = Math.min(currentLevel + 1, 63);
+				currentLevel++;
 				player.setDamage(0);
+				if (currentLevel >= levelSequence.length)
+					mode = Mode.uberwin;
 			}
+			
+			break;
+		case uberwin:
 			
 			break;
 		}
@@ -161,9 +168,11 @@ public class Game {
 	
 	public static void fillLevels()
 	{
-		Random rand = new Random();		
+		Random rand = new Random();
 		
 		boolean[] chosen = new boolean[64];
+
+		List<Integer> list = new LinkedList<Integer>();
 		
 		for (int i = 0; i < 64; i++)
 		{
@@ -173,7 +182,18 @@ public class Game {
 				lev = rand.nextInt(64);
 			} while (chosen[lev]);
 			
-			levelSequence[i] = lev;
+			chosen[lev] = true;
+			
+			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() > 0.9) continue;
+			
+			list.add(lev);
+		}
+		
+		levelSequence = new int[list.size()];
+		
+		for (int i = 0; i < list.size(); i++)
+		{
+			levelSequence[i] = list.get(i);
 		}
 	}
 }

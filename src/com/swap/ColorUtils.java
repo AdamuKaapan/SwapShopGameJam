@@ -16,6 +16,7 @@ public class ColorUtils {
 	
 	public static Color invertColor(Color color)
 	{
-		return new Color(255 - color.getRed(), 255 - color.getGreen(), 255 - color.getBlue(), color.a);
+		//System.out.println(color.getRed() + ", " + color.getGreen() + ", " + color.getBlue());
+		return new Color(1f - color.a, 1f - color.g, 1f - color.b, color.a);
 	}
 }
