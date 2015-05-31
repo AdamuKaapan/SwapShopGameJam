@@ -7,6 +7,7 @@ import java.util.Random;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 
+import com.osreboot.ridhvl.menu.HvlMenu;
 import com.osreboot.ridhvl.painter.painter2d.HvlPainter2D;
 import com.swap.TextureManager.TextureSeries;
 
@@ -46,18 +47,25 @@ public class Game {
 		hue = 1;
 		timer = 0;
 		mode = Mode.prepreview;
-		currentLevel = 0;
 		fillLevels();
+		currentLevel = levelSequence.length - 1;
 	}
 	
 	public static void update(long delta){
-		for(int x = 0; x < 16; x++){
-			for(int y = 0; y < 16; y++){
-				HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getColor(x, y));
-				Color color = ColorUtils.invertColor(Game.getBackground());
-				//if(SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, x, y) > 0) HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.PARTICLE, 0), new Color(color.r, color.g, color.b, (float)SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, x, y)));
-				if(mode == Mode.preview || mode == Mode.play) if(SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, x, y) > 0) HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.PARTICLE, mode == Mode.preview ? 1 : 0), new Color(color.r, color.g, color.b, (float)SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, x, y)));
+		if (mode != Mode.uberwin)
+		{
+			for(int x = 0; x < 16; x++){
+				for(int y = 0; y < 16; y++){
+					HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getColor(x, y));
+					Color color = ColorUtils.invertColor(Game.getBackground());
+					//if(SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, x, y) > 0) HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.PARTICLE, 0), new Color(color.r, color.g, color.b, (float)SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, x, y)));
+					if(mode == Mode.preview || mode == Mode.play) if(SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, x, y) > 0) HvlPainter2D.hvlDrawQuad(384 + (x*32), 104 + (y*32), 32, 32, TextureManager.getTexture(TextureSeries.PARTICLE, mode == Mode.preview ? 1 : 0), new Color(color.r, color.g, color.b, (float)SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, x, y)));
+				}
 			}
+		}
+		else
+		{
+			HvlPainter2D.hvlDrawQuad(Display.getWidth() / 2 - 128, Display.getHeight() / 2 - 128, 256, 256, 0, 0, 1, 1, SpriteSheetUtil.getSpriteSheet(), Color.white);
 		}
 		
 		switch (mode)
@@ -190,7 +198,7 @@ public class Game {
 			
 			break;
 		case uberwin:
-			
+			HvlMenu.setCurrent(MenuManager.menuWin);
 			break;
 		}
 		
