@@ -107,7 +107,7 @@ public class SpriteSheetPart
 			}
 		}
 
-		return (double) Math.abs(max - min) / 360.0;
+		return 1.0 - ((double) Math.abs(max - min) / 360.0);
 	}
 	
 	public double getDamage(int hue, int x, int y)
