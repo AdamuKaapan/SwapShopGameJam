@@ -172,10 +172,11 @@ public class MenuManager {
 			public void draw(long delta){
 				super.draw(delta);
 				drawCrazyWord(delta, "how to play", 100, 10, 0.5f, new Color(1f, 1f, 1f));
-				drawCrazyWord(delta, "watch the level preview", Display.getWidth()/8, Display.getHeight()/8, 0.25f, new Color(1f, 1f, 1f), 0.15f);
-				drawCrazyWord(delta, "then avoid the traps!", Display.getWidth()/8, Display.getHeight()/4, 0.25f, new Color(1f, 1f, 1f), 0.15f);
-				drawCrazyWord(delta, "keep an eye on the cursor", Display.getWidth()/16*6, Display.getHeight()/2, 0.25f, new Color(1f, 1f, 1f), 0.15f);
-				drawCrazyWord(delta, "for the current color", Display.getWidth()/32*15, Display.getHeight()/8*5, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				drawCrazyWord(delta, "wasd to move", Display.getWidth()/16*6, Display.getHeight()/16*3, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				drawCrazyWord(delta, "watch the level preview", Display.getWidth()/8, Display.getHeight()/32*11, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				drawCrazyWord(delta, "then avoid the traps!", Display.getWidth()/8, Display.getHeight()/32*15, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				drawCrazyWord(delta, "keep an eye on the pointer", Display.getWidth()/16*6, Display.getHeight()/8*5, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				drawCrazyWord(delta, "for the current color!", Display.getWidth()/32*15, Display.getHeight()/4*3, 0.25f, new Color(1f, 1f, 1f), 0.15f);
 			}
 		};
 		buttonTutorialMain = new HvlButton(main.getWidth()/8, main.getHeight()/8*7, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
@@ -350,14 +351,14 @@ public class MenuManager {
 	}
 	
 	public static String getDifficultyName(double difficultyArg){
-		if(difficultyArg < 0.1f) return "super easy";
-		else if(difficultyArg < 0.2f) return "very easy";
-		else if(difficultyArg < 0.3f) return "easy";
-		else if(difficultyArg < 0.4f) return "mild";
-		else if(difficultyArg < 0.5f) return "medium";
-		else if(difficultyArg < 0.6f) return "slightly hard";
-		else if(difficultyArg < 0.7f) return "hard";
-		else if(difficultyArg < 0.8f) return "very hard";
+		if(difficultyArg < 0.5f) return "super easy";
+		else if(difficultyArg < 0.55f) return "very easy";
+		else if(difficultyArg < 0.6f) return "easy";
+		else if(difficultyArg < 0.65f) return "mild";
+		else if(difficultyArg < 0.7f) return "medium";
+		else if(difficultyArg < 0.75f) return "slightly hard";
+		else if(difficultyArg < 0.8f) return "hard";
+		else if(difficultyArg < 0.85f) return "very hard";
 		else if(difficultyArg < 0.9f) return "super hard";
 		else return "insane";
 	}
