@@ -49,6 +49,7 @@ public class Game {
 		mode = Mode.prepreview;
 		fillLevels();
 		currentLevel = 0;
+		currentLevel = levelSequence.length - 1;
 		
 		if (levelSequence.length == 0)
 		{
@@ -200,10 +201,10 @@ public class Game {
 				if (currentLevel >= levelSequence.length)
 					mode = Mode.uberwin;
 			}
-			
 			break;
 		case uberwin:
 			HvlMenu.setCurrent(MenuManager.menuWin);
+			MenuManager.levels = levelSequence.length;
 			break;
 		}
 		
