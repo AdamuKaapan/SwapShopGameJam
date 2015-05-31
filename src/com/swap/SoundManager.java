@@ -15,6 +15,9 @@ public class SoundManager {
 	
 	public static void initialize(){
 		songSoundLoader.loadResource("Swapsong");
+		
+		effectSoundLoader.loadResource("losing sound");
+		effectSoundLoader.loadResource("winning sound");
 	}
 	
 	public static Audio getSound(SoundSeries seriesArg, int indexArg){
