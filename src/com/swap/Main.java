@@ -3,6 +3,7 @@ package com.swap;
 import org.newdawn.slick.openal.SoundStore;
 
 import com.osreboot.ridhvl.HvlDisplay.HvlDisplayMode;
+import com.osreboot.ridhvl.menu.HvlButton;
 import com.osreboot.ridhvl.template.HvlTemplateInteg2DBasic;
 import com.swap.SoundManager.SoundSeries;
 
@@ -31,6 +32,7 @@ public class Main extends HvlTemplateInteg2DBasic {
 	public void update(long delta) {
 		MenuManager.draw(delta);
 		SoundStore.get().poll(0);
+		HvlButton.updateButtons();
 	}
 
 }
