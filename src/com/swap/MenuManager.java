@@ -20,7 +20,8 @@ public class MenuManager {
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
 	buttonPausedQuit, buttonPausedResume,
 	buttonOptionsMain, buttonOptionsMute, 
-	buttonTutorialMain;
+	buttonTutorialMain, 
+	buttonWinMain;
 
 	private static double currentDifficulty;
 	
@@ -211,6 +212,7 @@ public class MenuManager {
 			public void draw(long delta){
 				super.draw(delta);
 				drawCrazyWord(delta, "map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				if(SpriteSheetUtil.getSpriteSheet() == null) newSpriteSheet();
 				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/4, 128, 128, SpriteSheetUtil.getSpriteSheet());
 				drawCrazyWord(delta, getDifficultyName(currentDifficulty), Display.getWidth()/8, Display.getHeight()/2, 0.5f, new Color(1f, 1f, 1f));
 			}
@@ -218,9 +220,7 @@ public class MenuManager {
 		buttonPreviewRefresh = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
-				SpriteSheetUtil.downloadSpritesheet();
-				for(int i = 0; i < 64; i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getDifficulty();
-				currentDifficulty /= 64;
+				newSpriteSheet();
 			}
 			@Override
 			public void draw(long delta){
@@ -315,6 +315,18 @@ public class MenuManager {
 				drawCrazyWord(delta, text, 200, 300, 1.0f, Color.white);
 			}
 		};
+		buttonWinMain = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+			@Override
+			public void onTriggered(){
+				HvlMenu.setCurrent(menuMain);
+			}
+			@Override
+			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
+				drawCrazyWord(delta, "back to main menu", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f), 0.5f);
+			}
+		};
+		menuWin.addButton(buttonWinMain);
 		
 		HvlMenu.setCurrent(menuMain);
 	}
@@ -359,6 +371,13 @@ public class MenuManager {
 		fontPainter.hvlDrawWord(word, x, y, scale + modifier2, ColorUtils.invertColor(color));
 		HvlPainter2D.hvlResetRotation();
 		fontPainter.hvlDrawWord(word, x, y, scale, color);
+	}
+	
+	public static void newSpriteSheet(){
+		while(!SpriteSheetUtil.downloadSpritesheet()){}
+		currentDifficulty = 0;
+		for(int i = 0; i < 64; i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getDifficulty();
+		currentDifficulty /= 64;
 	}
 	
 	public static String getDifficultyName(double difficultyArg){
