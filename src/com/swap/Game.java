@@ -8,8 +8,9 @@ import com.swap.TextureManager.TextureSeries;
 
 public class Game {	
 	private static int hue = 0;
-	private static long timeBetweenSwitch = 50;
+	private static long timeBetweenSwitch = 50, previewTime = 10;
 	private static long timer = 0;
+	private static boolean isPreviewing;
 	
 	public static void initialize(){
 		
@@ -21,6 +22,7 @@ public class Game {
 		player = new Player();
 		hue = 0;
 		timer = 0;
+		isPreviewing = true;
 	}
 	
 	public static void update(long delta){
@@ -36,17 +38,28 @@ public class Game {
 		{
 			timer += delta;
 			
-			if (timer >= timeBetweenSwitch)
+			if (timer >= (isPreviewing ? previewTime : timeBetweenSwitch))
 			{
 				hue++;
 				timer = 0;
 			}
 		}
+		else
+		{
+			if (isPreviewing)
+			{
+				isPreviewing = false;
+				hue = 0;
+			}
+		}
 		
-		int tileX = Math.round((player.getX() - 400) / 32);
-		int tileY = Math.round((player.getY() - 120) / 32);
-		player.incDamage((double) SpriteSheetUtil.getSpriteSheetPart(0, 0).getDamage(hue, tileX, tileY) * Player.maxDamagePerSecond * ((double) delta / 1000));
-				
+		if (!isPreviewing)
+		{
+			int tileX = Math.round((player.getX() - 400) / 32);
+			int tileY = Math.round((player.getY() - 120) / 32);
+			player.incDamage((double) SpriteSheetUtil.getSpriteSheetPart(0, 0).getDamage(hue, tileX, tileY) * Player.maxDamagePerSecond * ((double) delta / 1000));
+		}
+		
 		HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
 		
 		player.update(delta);
