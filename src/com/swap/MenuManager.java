@@ -17,7 +17,7 @@ public class MenuManager {
 	public static HvlButton buttonMainCredits, buttonMainPlay, buttonMainQuit, buttonMainOptions, buttonMainTutorial, 
 	buttonCreditsMain, 
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
-	buttonPausedQuit, buttonPausedResume,
+	buttonPausedQuit, buttonPausedResume, buttonPauseMute,
 	buttonOptionsMain, buttonOptionsMute, 
 	buttonTutorialMain, 
 	buttonWinMain;
@@ -280,7 +280,7 @@ public class MenuManager {
 				drawCrazyWord(delta, "paused", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 			}
 		};
-		buttonPausedQuit = new HvlButton(main.getWidth()/8, main.getHeight()/8*6, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonPausedQuit = new HvlButton(main.getWidth()/8, main.getHeight()/8*7, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuMain);
@@ -292,7 +292,7 @@ public class MenuManager {
 			}
 		};
 		menuPaused.addButton(buttonPausedQuit);
-		buttonPausedResume = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonPausedResume = new HvlButton(main.getWidth()/8, main.getHeight()/8, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuGame);
@@ -304,6 +304,21 @@ public class MenuManager {
 			}
 		};
 		menuPaused.addButton(buttonPausedResume);
+		buttonPauseMute = new HvlButton(main.getWidth()/8, main.getHeight()/8*2, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+			@Override
+			public void onTriggered(){
+				SoundManager.setMuted(!SoundManager.getMuted());
+			}
+			@Override
+			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
+				drawCrazyWord(delta, SoundManager.getMuted() ? "unmute audio" : "mute audio", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+			}
+		};
+		menuPaused.addButton(buttonPauseMute);
+		
+		
+		
 		
 		// WIN SCREEN
 		menuWin = new HvlMenu()
