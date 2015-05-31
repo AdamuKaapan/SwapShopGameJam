@@ -153,7 +153,7 @@ public class Game {
 					mode = Mode.death;
 					Random rand = new Random();
 					currentLoseText = rand.nextInt(loseTexts.length);
-					SoundManager.getSound(SoundSeries.LOSE, SoundManager.loseSoundMap.get(loseTexts[currentLoseText])).playAsSoundEffect(1.0f, 1.0f, false);
+					//SoundManager.getSound(SoundSeries.LOSE, SoundManager.loseSoundMap.get(loseTexts[currentLoseText])).playAsSoundEffect(1.0f, 1.0f, false);
 				}
 			}
 			else
@@ -161,7 +161,7 @@ public class Game {
 				Random rand = new Random();
 				mode = Mode.win;
 				currentWinText = rand.nextInt(winTexts.length);
-				SoundManager.getSound(SoundSeries.WIN, SoundManager.winSoundMap.get(winTexts[currentWinText])).playAsSoundEffect(1.0f, 1.0f, false);
+				//SoundManager.getSound(SoundSeries.WIN, SoundManager.winSoundMap.get(winTexts[currentWinText])).playAsSoundEffect(1.0f, 1.0f, false);
 			}
 			break;
 		case death:

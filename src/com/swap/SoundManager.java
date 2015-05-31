@@ -32,17 +32,17 @@ public class SoundManager {
 		effectSoundLoader.loadResource("losing sound");
 		effectSoundLoader.loadResource("winning sound");
 		
-		for (int i = 0; i < Game.winTexts.length; i++)
-		{
-			winSoundLoader.loadResource(Game.winTexts[i].replaceAll("\\?", "").replaceAll("\\.", ""));
-			winSoundMap.put(Game.winTexts[i], i);
-		}
-		
-		for (int i = 0; i < Game.loseTexts.length; i++)
-		{
-			loseSoundLoader.loadResource(Game.loseTexts[i].replaceAll("\\?", "").replaceAll("\\.", ""));
-			loseSoundMap.put(Game.loseTexts[i], i);
-		}
+//		for (int i = 0; i < Game.winTexts.length; i++)
+//		{
+//			winSoundLoader.loadResource(Game.winTexts[i].replaceAll("\\?", "").replaceAll("\\.", ""));
+//			winSoundMap.put(Game.winTexts[i], i);
+//		}
+//		
+//		for (int i = 0; i < Game.loseTexts.length; i++)
+//		{
+//			loseSoundLoader.loadResource(Game.loseTexts[i].replaceAll("\\?", "").replaceAll("\\.", ""));
+//			loseSoundMap.put(Game.loseTexts[i], i);
+//		}
 	}
 	
 	public static void update(){
