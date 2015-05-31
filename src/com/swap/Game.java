@@ -233,7 +233,7 @@ public class Game {
 			
 			chosen[lev] = true;
 			
-			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() > 0.98) continue;
+			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() >= 0.99) continue;
 			
 			list.add(lev);
 		}
