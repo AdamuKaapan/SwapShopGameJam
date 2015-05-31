@@ -20,11 +20,15 @@ public class Game {
 	private static long timer = 0;
 	private static Mode mode;
 	
-	private static String[] winTexts = new String[] { "nice!", "duuuude!", "epic!", "bruh!", "whoa!", "woah!", "whuuuut?", "how even?" };
+	private static String[] winTexts = new String[] { "nice!", "duuuude!", "epic!", "bruh!", "whoa!", "woah!", "whuuuut?", "how even?", "fantastic!" };
 	private static String[] loseTexts = new String[] { "siiiiigh...", "oops", "derp", "try again", "denied", "nooooo..." ,"aww..." };
+	private static String[] preTexts = new String[] { "pay attention...", "watch carefully...", "look at this...", "watch and learn" };
+	private static String[] readyTexts = new String[] { "ready?", "get ready...", "prepare yourself!", "runners to your marks" };
 	
 	private static int currentWinText;
 	private static int currentLoseText;
+	private static int currentPreText;
+	private static int currentReadyText;
 	
 	private static int currentLevel = 0;
 	private static int[] levelSequence;
@@ -36,6 +40,8 @@ public class Game {
 	private static Player player;
 	
 	public static void start(){
+		Random rand = new Random();
+		currentPreText = rand.nextInt(preTexts.length);
 		player = new Player();
 		hue = 1;
 		timer = 0;
@@ -57,6 +63,9 @@ public class Game {
 		switch (mode)
 		{
 		case prepreview:
+			String pt = preTexts[currentPreText];
+			MenuManager.drawCrazyWord(delta, pt, (Display.getWidth() / 2) - (112 * pt.length() * 0.25f * 0.5f) + 16, (Display.getHeight()) - (144 * 0.25f) - 32, 0.25f, Color.white);
+			
 			timer += delta;
 			
 			if (timer >= 2500)
@@ -70,6 +79,8 @@ public class Game {
 			
 			break;
 		case preview:
+			String pt2 = preTexts[currentPreText];
+			MenuManager.drawCrazyWord(delta, pt2, (Display.getWidth() / 2) - (112 * pt2.length() * 0.25f * 0.5f) + 16,(Display.getHeight()) - (144 * 0.25f) - 32, 0.25f, Color.white);			
 			if (hue < 360)
 			{
 				timer += delta;
@@ -85,11 +96,16 @@ public class Game {
 			else
 			{
 				mode = Mode.pause;
+				Random rand = new Random();
+				currentReadyText = rand.nextInt(readyTexts.length);
 				hue = 1;
 				timer = 0;
 			}
 			break;
 		case pause:
+			String pauset = readyTexts[currentReadyText];
+			MenuManager.drawCrazyWord(delta, pauset, (Display.getWidth() / 2) - (112 * pauset.length() * 0.25f * 0.5f) + 16, (Display.getHeight()) - (144 * 0.25f) - 32, 0.25f, Color.white);
+			
 			timer += delta;
 			if (timer >= pauseTime)
 			{
@@ -142,6 +158,8 @@ public class Game {
 			
 			if (timer >= 5000)
 			{
+				Random rand = new Random();
+				currentPreText = rand.nextInt(preTexts.length);				
 				mode = Mode.prepreview;
 				timer = 0;
 				hue = 1;
@@ -159,6 +177,8 @@ public class Game {
 			
 			if (timer >= 5000)
 			{
+				Random rand = new Random();
+				currentPreText = rand.nextInt(preTexts.length);
 				mode = Mode.prepreview;
 				timer = 0;
 				hue = 1;
@@ -206,7 +226,7 @@ public class Game {
 			
 			chosen[lev] = true;
 			
-			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() > 0.9) continue;
+			if (SpriteSheetUtil.getSpriteSheetPart(lev).getDifficulty() > 0.95) continue;
 			
 			list.add(lev);
 		}
