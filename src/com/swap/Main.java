@@ -31,8 +31,8 @@ public class Main extends HvlTemplateInteg2DBasic {
 	@Override
 	public void update(long delta) {
 		MenuManager.draw(delta);
-		SoundStore.get().poll(0);
 		HvlButton.updateButtons();
+		SoundManager.update();
 	}
 
 }
