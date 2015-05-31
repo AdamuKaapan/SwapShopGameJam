@@ -12,7 +12,7 @@ public class Main extends HvlTemplateInteg2DBasic {
 	}
 	
 	public Main(){
-		super(60, 1280, 720, ".saturate", 20, HvlDisplayMode.DEFAULT);
+		super(60, 1280, 720, ".saturate", "Icon", 20, HvlDisplayMode.DEFAULT);
 	}
 	
 	@Override
