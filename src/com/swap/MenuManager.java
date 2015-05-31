@@ -403,15 +403,15 @@ public class MenuManager {
 	}
 	
 	public static String getDifficultyName(double difficultyArg){
-		if(difficultyArg < 0.5f) return "super easy";
-		else if(difficultyArg < 0.55f) return "very easy";
-		else if(difficultyArg < 0.6f) return "easy";
-		else if(difficultyArg < 0.65f) return "mild";
-		else if(difficultyArg < 0.7f) return "medium";
-		else if(difficultyArg < 0.75f) return "slightly hard";
+		if(difficultyArg < 0.4f) return "super easy";
+		else if(difficultyArg < 0.4666f) return "very easy";
+		else if(difficultyArg < 0.5333f) return "easy";
+		else if(difficultyArg < 0.6f) return "mild";
+		else if(difficultyArg < 0.6666f) return "medium";
+		else if(difficultyArg < 0.7333f) return "slightly hard";
 		else if(difficultyArg < 0.8f) return "hard";
-		else if(difficultyArg < 0.85f) return "very hard";
-		else if(difficultyArg < 0.9f) return "super hard";
+		else if(difficultyArg < 0.8666f) return "very hard";
+		else if(difficultyArg < 0.9333f) return "super hard";
 		else return "insane";
 	}
 
