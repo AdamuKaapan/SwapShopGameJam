@@ -75,7 +75,7 @@ public class Game {
 				timer = 0;
 			}
 			
-			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/16f, TextureManager.getTexture(TextureSeries.MISC, 0));
 			
 			break;
 		case preview:
@@ -91,7 +91,7 @@ public class Game {
 					timer = 0;
 				}
 				
-				HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+				HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/16f, TextureManager.getTexture(TextureSeries.MISC, 0));
 			}
 			else
 			{
@@ -112,7 +112,7 @@ public class Game {
 				mode = Mode.play;
 				timer = 0;
 			}
-			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/16f, TextureManager.getTexture(TextureSeries.MISC, 0));
 			
 			break;
 		case play:
@@ -130,7 +130,7 @@ public class Game {
 				int tileY = Math.round((player.getY() - 120) / 32);
 				player.incDamage((double) SpriteSheetUtil.getSpriteSheetPart(levelSequence[currentLevel]).getDamage(hue, tileX, tileY) * Player.maxDamagePerSecond * ((double) delta / 1000));
 			
-				HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+				HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/16f, TextureManager.getTexture(TextureSeries.MISC, 0));
 				
 				HvlPainter2D.hvlDrawQuad(Display.getWidth()/64*49, Display.getHeight()/16*15 - (((float)hue/360)*(Display.getHeight()/4*3)) - 16, 32, 32, TextureManager.getTexture(TextureSeries.GAME, 1));
 				
@@ -149,7 +149,7 @@ public class Game {
 			}
 			break;
 		case death:
-			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/16f, TextureManager.getTexture(TextureSeries.MISC, 0));
 			
 			String lt = loseTexts[currentLoseText];
 			MenuManager.drawCrazyWord(delta, lt, (Display.getWidth() / 2) - (112 * lt.length() * 0.75f * 0.5f), (Display.getHeight() / 2) - (144 * 0.75f * 0.5f), 0.75f, Color.white);
@@ -168,7 +168,7 @@ public class Game {
 			}
 			break;
 		case win:
-			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/16f, TextureManager.getTexture(TextureSeries.MISC, 0));
 			
 			String wt = winTexts[currentWinText];
 			MenuManager.drawCrazyWord(delta, wt, (Display.getWidth() / 2) - (112 * wt.length() * 0.75f * 0.5f), (Display.getHeight() / 2) - (144 * 0.75f * 0.5f), 0.75f, Color.white);
