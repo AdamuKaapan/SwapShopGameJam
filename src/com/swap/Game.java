@@ -17,7 +17,7 @@ public class Game {
 		prepreview, preview, pause, play, death, win, uberwin
 	}
 	private static int hue = 1;
-	private static long playTime = 25, previewTime = 15, pauseTime = 5000;
+	private static long playTime = 20, previewTime = 17, pauseTime = 5000;
 	private static long timer = 0;
 	private static Mode mode;
 	
