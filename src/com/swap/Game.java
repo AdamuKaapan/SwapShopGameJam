@@ -14,7 +14,7 @@ public class Game {
 		prepreview, preview, pause, play, death, win
 	}
 	private static int hue = 1;
-	private static long timeBetweenSwitch = 75, previewTime = 5, pauseTime = 5000;
+	private static long timeBetweenSwitch = 50, previewTime = 5, pauseTime = 5000;
 	private static long timer = 0;
 	private static Mode mode;
 	
@@ -62,7 +62,6 @@ public class Game {
 		case preview:
 			if (hue < 360)
 			{
-				System.out.println("Previewing!");
 				timer += delta;
 				
 				if (timer >= previewTime)
@@ -82,7 +81,6 @@ public class Game {
 			break;
 		case pause:
 			timer += delta;
-			System.out.println("Wait for it... ?");
 			if (timer >= pauseTime)
 			{
 				mode = Mode.play;
@@ -92,7 +90,6 @@ public class Game {
 		case play:
 			if (hue < 360)
 			{
-				System.out.println("Playing!");
 				timer += delta;
 				
 				if (timer >= timeBetweenSwitch)
