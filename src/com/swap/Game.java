@@ -20,6 +20,10 @@ public class Game {
 	private static long timer = 0;
 	private static Mode mode;
 	
+	private static String[] winTexts = new String[] { "nice!", "duuuude!", "epic!", "bruh!", "whoa!", "woah!", "whuuuut?", "how even?" };
+	
+	private static int currentWinText;
+	
 	private static int currentLevel = 0;
 	private static int[] levelSequence;
 	
@@ -117,7 +121,9 @@ public class Game {
 			}
 			else
 			{
+				Random rand = new Random();
 				mode = Mode.win;
+				currentWinText = rand.nextInt(winTexts.length);
 			}
 			break;
 		case death:
@@ -133,9 +139,12 @@ public class Game {
 			}
 			break;
 		case win:
+			String text = winTexts[currentWinText];
+			MenuManager.drawCrazyWord(delta, text, (Display.getWidth() / 2) - (112 * text.length() * 0.75f * 0.5f), (Display.getHeight() / 2) - (144 * 0.75f * 0.5f), 0.75f, ColorUtils.invertColor(getBackground()));
+			
 			timer += delta;
 			
-			if (timer >= 2500)
+			if (timer >= 5000)
 			{
 				mode = Mode.prepreview;
 				timer = 0;
