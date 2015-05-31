@@ -1,7 +1,6 @@
 package com.swap;
 
 import org.lwjgl.opengl.Display;
-import org.newdawn.slick.Color;
 
 import com.osreboot.ridhvl.painter.painter2d.HvlPainter2D;
 import com.swap.KeybindManager.ActionType;

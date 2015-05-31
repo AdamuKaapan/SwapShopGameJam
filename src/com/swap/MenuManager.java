@@ -2,7 +2,6 @@ package com.swap;
 
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.opengl.Texture;
 
 import com.osreboot.ridhvl.HvlFontUtil.HvlFontLayout;
 import com.osreboot.ridhvl.menu.HvlButton;
