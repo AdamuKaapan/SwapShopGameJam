@@ -193,7 +193,7 @@ public class MenuManager {
 	static long total = 0;
 	
 	public static void drawCrazyWord(long delta, String word, float x, float y, float scale, Color color){
-		float modifier = (float)(Math.sin((double)total/250)*10);
+		float modifier = (float)(Math.sin((double)total/250)*7);
 		float modifier2 = (float)(Math.cos((double)total/300)/30);
 		HvlPainter2D.hvlRotate(x + (112 /2*word.length()*(scale + modifier2)), y + (114/4*word.length()*(scale + modifier2)), modifier);
 		fontPainter.hvlDrawWord(word, x, y, scale + modifier2, ColorUtils.invertColor(color));
