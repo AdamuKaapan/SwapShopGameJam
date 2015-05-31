@@ -399,13 +399,8 @@ public class MenuManager {
 	public static void newSpriteSheet(){
 		while(!SpriteSheetUtil.downloadSpritesheet() || SpriteSheetUtil.getViableLevels() == 0){}
 		currentDifficulty = 0;
-<<<<<<< HEAD
-		for(int i = 0; i < SpriteSheetUtil.getViableLevels(); i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getDifficulty();
-		currentDifficulty /= SpriteSheetUtil.getViableLevels();
-=======
-		for(int i = 0; i < 64; i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getClumpDifficulty();
-		currentDifficulty /= 64;
->>>>>>> branch 'master' of https://github.com/AdamuKaapan/SwapShopGameJam.git
+		for(int i = 0; i < SpriteSheetUtil.getViableLevels(); i++) currentDifficulty += SpriteSheetUtil.getSpriteSheetPart(i).getClumpDifficulty() + SpriteSheetUtil.getSpriteSheetPart(i).getRangeDifficulty();
+		currentDifficulty /= SpriteSheetUtil.getViableLevels()*2;
 	}
 	
 	public static String getDifficultyName(double difficultyArg){
