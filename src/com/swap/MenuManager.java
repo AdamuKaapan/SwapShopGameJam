@@ -56,7 +56,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
-				fontPainter.hvlDrawWord("credits", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "credits", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuMain.addButton(buttonMainCredits);
@@ -67,7 +67,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				super.draw(delta);
-				fontPainter.hvlDrawWord("credits", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "credits", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 			}
 		};
 		buttonCreditsMain = new HvlButton(main.getWidth()/8, main.getHeight()/8, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
@@ -78,7 +78,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
-				fontPainter.hvlDrawWord("back", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "back", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuCredits.addButton(buttonCreditsMain);
@@ -89,9 +89,9 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				super.draw(delta);
-				fontPainter.hvlDrawWord("map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 				HvlPainter2D.hvlDrawQuad(Display.getWidth()/8, Display.getHeight()/4, 128, 128, SpriteSheetUtil.getSpriteSheet());
-				fontPainter.hvlDrawWord(getDifficultyName(currentDifficulty), Display.getWidth()/8, Display.getHeight()/2, 0.5f, new Color((float)currentDifficulty, 1f, 1f));
+				drawCrazyWord(delta, getDifficultyName(currentDifficulty), Display.getWidth()/8, Display.getHeight()/2, 0.5f, new Color((float)currentDifficulty, 1f, 1f));
 			}
 		};
 		buttonPreviewRefresh = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
@@ -104,7 +104,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
-				fontPainter.hvlDrawWord("refresh", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "refresh", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuPreview.addButton(buttonPreviewRefresh);
@@ -117,7 +117,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
-				fontPainter.hvlDrawWord("start", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "start", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuPreview.addButton(buttonPreviewStart);
@@ -129,7 +129,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
-				fontPainter.hvlDrawWord("back", getX(), getY() + (getYLength()/6), 0.25f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "back", getX(), getY() + (getYLength()/6), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuPreview.addButton(buttonPreviewBack);
@@ -152,7 +152,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				super.draw(delta);
-				fontPainter.hvlDrawWord("map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "map select", 100, 10, 0.5f, new Color(1f, 1f, 1f));
 			}
 		};
 		buttonPausedQuit = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
@@ -163,7 +163,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
-				fontPainter.hvlDrawWord("quit", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "quit", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuPaused.addButton(buttonPausedQuit);
@@ -175,7 +175,7 @@ public class MenuManager {
 			@Override
 			public void draw(long delta){
 				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), new Color(1f, isHovering() ? 1f : 0f, 0f));
-				fontPainter.hvlDrawWord("resume", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "resume", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
 			}
 		};
 		menuPaused.addButton(buttonPausedResume);
@@ -193,9 +193,12 @@ public class MenuManager {
 	static long total = 0;
 	
 	public static void drawCrazyWord(long delta, String word, float x, float y, float scale, Color color){
+		float modifier = (float)(Math.sin((double)total/250)*7);
+		float modifier2 = (float)(Math.cos((double)total/300)/30);
+		HvlPainter2D.hvlRotate(x + (112 /2*word.length()*(scale + modifier2)), y + (114/4*word.length()*(scale + modifier2)), modifier);
+		fontPainter.hvlDrawWord(word, x, y, scale + modifier2, ColorUtils.invertColor(color));
+		HvlPainter2D.hvlResetRotation();
 		fontPainter.hvlDrawWord(word, x, y, scale, color);
-		float modifier = (float)(Math.sin((double)total/1000)/4 + 0.5f);
-		fontPainter.hvlDrawWord(word, x * modifier, y * modifier, modifier, ColorUtils.invertColor(color));
 	}
 	
 	public static String getDifficultyName(double difficultyArg){
