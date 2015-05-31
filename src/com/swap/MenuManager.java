@@ -37,6 +37,7 @@ public class MenuManager {
 			public void draw(long delta){
 				super.draw(delta);
 				drawCrazyWord(delta, "main menu", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, ".saturate", Display.getWidth()/32*3, Display.getHeight()/8*3, 1f, new Color(1f, 1f, 1f), 0.5f);
 			}
 		};
 		buttonMainPlay = new HvlButton(main.getWidth()/8, main.getHeight()/8, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
@@ -51,7 +52,7 @@ public class MenuManager {
 			}
 		};
 		menuMain.addButton(buttonMainPlay);
-		buttonMainCredits = new HvlButton(main.getWidth()/8, main.getHeight()/2, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonMainCredits = new HvlButton(main.getWidth()/8, main.getHeight()/8*6, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuCredits);
@@ -76,7 +77,7 @@ public class MenuManager {
 			}
 		};
 		menuMain.addButton(buttonMainQuit);
-		buttonMainOptions = new HvlButton(main.getWidth()/8, main.getHeight()/8*3, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonMainOptions = new HvlButton(main.getWidth()/8, main.getHeight()/8*5, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuOptions);
