@@ -8,7 +8,7 @@ import org.newdawn.slick.opengl.Texture;
 public class SpriteSheetPart
 {
 	public static final int sensitivity = 2;
-	public static final int damageRange = 6;
+	public static final int damageRange = 10;
 	
 	public Texture texture;
 	public int[] reds = new int[256];
