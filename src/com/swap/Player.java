@@ -10,7 +10,7 @@ import com.swap.TextureManager.TextureSeries;
 public class Player {
 
 	public static final float friction = 0.9999f, speed = 0.013f, bounce = 0.8f;
-	public static final float playerSize = 32;
+	public static final float playerSize = 24;
 	
 	public static final double deathDamage = 7.5;
 	public static final double maxDamagePerSecond = 20;
@@ -24,7 +24,7 @@ public class Player {
 	}
 	
 	public void update(long delta){
-		HvlPainter2D.hvlDrawQuad(x - 16, y - 16, 32, 32, TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(Game.getBackground()));
+		HvlPainter2D.hvlDrawQuad(x - (playerSize/2), y - (playerSize/2), playerSize, playerSize, TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(Game.getBackground()));
 		xs += (KeybindManager.getActionValue(ActionType.MOVEHORIZONTAL)*delta*speed);
 		ys += (-KeybindManager.getActionValue(ActionType.MOVEVERTICAL)*delta*speed);
 		xs *= (x + xs > 896 - (playerSize/2) ? -bounce : 1) * (x + xs < 384 + (playerSize/2) ? -bounce : 1);

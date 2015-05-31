@@ -1,11 +1,8 @@
 package com.swap;
 
-import org.newdawn.slick.Color;
-
 import com.osreboot.ridhvl.HvlDisplay.HvlDisplayMode;
-import com.osreboot.ridhvl.painter.painter2d.HvlPainter2D;
 import com.osreboot.ridhvl.template.HvlTemplateInteg2DBasic;
-import com.swap.TextureManager.TextureSeries;
+import com.swap.particles.ParticleManager;
 
 public class Main extends HvlTemplateInteg2DBasic {
 	
@@ -29,6 +26,7 @@ public class Main extends HvlTemplateInteg2DBasic {
 	@Override
 	public void update(long delta) {
 		MenuManager.draw(delta);
+		ParticleManager.updateParticles(delta);
 	}
 
 }
