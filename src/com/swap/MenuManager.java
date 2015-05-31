@@ -14,12 +14,13 @@ import com.swap.TextureManager.TextureSeries;
 
 public class MenuManager {
 
-	public static HvlMenu menuMain, menuCredits, menuPreview, menuGame, menuPaused, menuOptions;
-	public static HvlButton buttonMainCredits, buttonMainPlay, buttonMainQuit, buttonMainOptions, 
+	public static HvlMenu menuMain, menuCredits, menuPreview, menuGame, menuPaused, menuOptions, menuTutorial;
+	public static HvlButton buttonMainCredits, buttonMainPlay, buttonMainQuit, buttonMainOptions, buttonMainTutorial, 
 	buttonCreditsMain, 
 	buttonPreviewRefresh, buttonPreviewStart, buttonPreviewBack,
 	buttonPausedQuit, buttonPausedResume,
-	buttonOptionsMain, buttonOptionsMute;
+	buttonOptionsMain, buttonOptionsMute, 
+	buttonTutorialMain;
 
 	private static double currentDifficulty;
 	
@@ -30,6 +31,7 @@ public class MenuManager {
 
 
 
+		//MAIN MENU
 		menuMain = new HvlMenu(){
 			@Override
 			public void draw(long delta){
@@ -49,7 +51,7 @@ public class MenuManager {
 			}
 		};
 		menuMain.addButton(buttonMainPlay);
-		buttonMainCredits = new HvlButton(main.getWidth()/8, main.getHeight()/8*3, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonMainCredits = new HvlButton(main.getWidth()/8, main.getHeight()/2, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuCredits);
@@ -74,7 +76,7 @@ public class MenuManager {
 			}
 		};
 		menuMain.addButton(buttonMainQuit);
-		buttonMainOptions = new HvlButton(main.getWidth()/8, main.getHeight()/4, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonMainOptions = new HvlButton(main.getWidth()/8, main.getHeight()/8*3, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuOptions);
@@ -86,9 +88,22 @@ public class MenuManager {
 			}
 		};
 		menuMain.addButton(buttonMainOptions);
+		buttonMainTutorial = new HvlButton(main.getWidth()/8, main.getHeight()/4, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+			@Override
+			public void onTriggered(){
+				HvlMenu.setCurrent(menuTutorial);
+			}
+			@Override
+			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
+				drawCrazyWord(delta, "tutorial", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+			}
+		};
+		menuMain.addButton(buttonMainTutorial);
 
 
 
+		//CREDITS MENU
 		menuCredits = new HvlMenu(){
 			@Override
 			public void draw(long delta){
@@ -111,6 +126,7 @@ public class MenuManager {
 
 
 
+		//OPTIONS MENU
 		menuOptions = new HvlMenu(){
 			@Override
 			public void draw(long delta){
@@ -145,6 +161,34 @@ public class MenuManager {
 		
 		
 		
+		//TUTORIAL MENU
+		menuTutorial = new HvlMenu(){
+			@Override
+			public void draw(long delta){
+				super.draw(delta);
+				drawCrazyWord(delta, "how to play", 100, 10, 0.5f, new Color(1f, 1f, 1f));
+				drawCrazyWord(delta, "watch the level preview", Display.getWidth()/8, Display.getHeight()/8, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				drawCrazyWord(delta, "then avoid the traps!", Display.getWidth()/8, Display.getHeight()/4, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				drawCrazyWord(delta, "keep an eye on the cursor", Display.getWidth()/16*6, Display.getHeight()/2, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+				drawCrazyWord(delta, "for the current color", Display.getWidth()/32*15, Display.getHeight()/8*5, 0.25f, new Color(1f, 1f, 1f), 0.15f);
+			}
+		};
+		buttonTutorialMain = new HvlButton(main.getWidth()/8, main.getHeight()/8*7, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+			@Override
+			public void onTriggered(){
+				HvlMenu.setCurrent(menuMain);
+			}
+			@Override
+			public void draw(long delta){
+				HvlPainter2D.hvlDrawQuad(getX(), getY(), getXLength(), getYLength(), TextureManager.getTexture(TextureSeries.MISC, 0), ColorUtils.invertColor(backgroundColor));
+				drawCrazyWord(delta, "back", getX(), getY() + (getYLength()/3), 0.25f, new Color(1f, 1f, 1f));
+			}
+		};
+		menuTutorial.addButton(buttonTutorialMain);
+		
+		
+		
+		//MAP SELECT MENU
 		menuPreview = new HvlMenu(){
 			@Override
 			public void draw(long delta){
@@ -196,6 +240,7 @@ public class MenuManager {
 		
 		
 		
+		//IN GAME
 		menuGame = new HvlMenu(){
 			@Override
 			public void draw(long delta){
@@ -208,6 +253,7 @@ public class MenuManager {
 		
 		
 		
+		//PAUSE MENU
 		menuPaused = new HvlMenu(){
 			@Override
 			public void draw(long delta){
@@ -273,6 +319,15 @@ public class MenuManager {
 		float modifier = (float)(Math.sin((double)total/250)*7);
 		float modifier2 = (float)(Math.cos((double)total/300)/30);
 		HvlPainter2D.hvlRotate(x + (112 /2*word.length()*(scale + modifier2)), y + (114/4*word.length()*(scale + modifier2)), modifier);
+		fontPainter.hvlDrawWord(word, x, y, scale + modifier2, ColorUtils.invertColor(color));
+		HvlPainter2D.hvlResetRotation();
+		fontPainter.hvlDrawWord(word, x, y, scale, color);
+	}
+	
+	public static void drawCrazyWord(long delta, String word, float x, float y, float scale, Color color, float amplitude){
+		float modifier = (float)(Math.sin((double)total/250)*7);
+		float modifier2 = (float)(Math.cos((double)total/300)/30)*amplitude;
+		HvlPainter2D.hvlRotate(x + (112 /2*word.length()*(scale + modifier2)), y + (114/4*word.length()*(scale + modifier2)), modifier*amplitude);
 		fontPainter.hvlDrawWord(word, x, y, scale + modifier2, ColorUtils.invertColor(color));
 		HvlPainter2D.hvlResetRotation();
 		fontPainter.hvlDrawWord(word, x, y, scale, color);
