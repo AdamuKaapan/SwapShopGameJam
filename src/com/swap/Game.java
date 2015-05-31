@@ -86,6 +86,8 @@ public class Game {
 				mode = Mode.play;
 				timer = 0;
 			}
+			HvlPainter2D.hvlDrawQuad(0f, 0f, (1 - (float)(player.getDamage()/Player.deathDamage))*Display.getWidth(), Display.getHeight()/8f, TextureManager.getTexture(TextureSeries.MISC, 0));
+			
 			break;
 		case play:
 			if (hue < 360)
