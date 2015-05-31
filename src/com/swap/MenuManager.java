@@ -114,9 +114,10 @@ public class MenuManager {
 				drawCrazyWord(delta, "and adam krpan", 575, 250, 0.25f, Color.white, 0.3f);
 				drawCrazyWord(delta, "art   harris nakajima", 100, 325, 0.25f, Color.white, 0.15f);
 				drawCrazyWord(delta, "music   harris nakajima", 100, 400, 0.25f, Color.white, 0.15f);
+				drawCrazyWord(delta, "made in one day for mini ld 59", 100, 500, 0.25f, Color.white, 0.15f);
 			}
 		};
-		buttonCreditsMain = new HvlButton(main.getWidth()/8, 500, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
+		buttonCreditsMain = new HvlButton(main.getWidth()/8, 600, main.getWidth()/4*3, main.getHeight()/32*3, main.getHeight()) {
 			@Override
 			public void onTriggered(){
 				HvlMenu.setCurrent(menuMain);

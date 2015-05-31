@@ -48,7 +48,7 @@ public class Game {
 		timer = 0;
 		mode = Mode.prepreview;
 		fillLevels();
-		currentLevel = levelSequence.length - 1;
+		currentLevel = 0;
 	}
 	
 	public static void update(long delta){
