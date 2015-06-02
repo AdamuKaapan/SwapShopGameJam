@@ -399,8 +399,9 @@ public class MenuManager {
 	public static void newSpriteSheet(){
 		while(!SpriteSheetUtil.downloadSpritesheet() || SpriteSheetUtil.getViableLevels() == 0){}
 		currentDifficulty = 0;
-		for(int i : SpriteSheetUtil.getViableLevelsArray()) currentDifficulty += (SpriteSheetUtil.getSpriteSheetPart(i).getClumpDifficulty()*0.2f) + (SpriteSheetUtil.getSpriteSheetPart(i).getRangeDifficulty()*0.8f);
+		for(int i : SpriteSheetUtil.getViableLevelsArray()) currentDifficulty += ((SpriteSheetUtil.getSpriteSheetPart(i).getClumpDifficulty()*0.3f) + (SpriteSheetUtil.getSpriteSheetPart(i).getRangeDifficulty()*0.7f)) * 1.111111f;
 		currentDifficulty /= SpriteSheetUtil.getViableLevels();
+		if(SpriteSheetUtil.getViableLevels() < 15) currentDifficulty = Math.min(currentDifficulty - 0.05, 1);
 		if(SpriteSheetUtil.getViableLevels() > 30) currentDifficulty = Math.min(currentDifficulty + 0.05, 1);
 		if(SpriteSheetUtil.getViableLevels() > 40) currentDifficulty = Math.min(currentDifficulty + 0.05, 1);
 		if(SpriteSheetUtil.getViableLevels() > 50) currentDifficulty = Math.min(currentDifficulty + 0.05, 1);

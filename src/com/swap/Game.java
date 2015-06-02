@@ -249,7 +249,7 @@ public class Game {
 			
 			chosen[lev] = true;
 			
-			if (SpriteSheetUtil.getSpriteSheetPart(lev).getClumpDifficulty() >= SpriteSheetUtil.threshold && SpriteSheetUtil.getSpriteSheetPart(lev).getRangeDifficulty() >= SpriteSheetUtil.threshold) continue;
+			if (SpriteSheetUtil.getSpriteSheetPart(lev).getClumpDifficulty() >= SpriteSheetUtil.threshold || SpriteSheetUtil.getSpriteSheetPart(lev).getRangeDifficulty() >= SpriteSheetUtil.threshold) continue;
 			
 			list.add(lev);
 		}
