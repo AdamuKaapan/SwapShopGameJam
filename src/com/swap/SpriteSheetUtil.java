@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -96,10 +97,21 @@ public class SpriteSheetUtil {
 		int count = 0;
 		for (int i = 0; i < 64; i++)
 		{
-			if (getSpriteSheetPart(i).getClumpDifficulty() < threshold)
+			if (getSpriteSheetPart(i).getClumpDifficulty() < threshold && getSpriteSheetPart(i).getRangeDifficulty() < threshold)
 				count++;
 		}
 		
 		return count;
+	}
+	
+	public static ArrayList<Integer> getViableLevelsArray()
+	{
+		ArrayList<Integer> levels = new ArrayList<Integer>();
+		for (int i = 0; i < 64; i++)
+		{
+			if (getSpriteSheetPart(i).getClumpDifficulty() < threshold && getSpriteSheetPart(i).getRangeDifficulty() < threshold) levels.add(i);
+		}
+		
+		return levels;
 	}
 }
